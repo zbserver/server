@@ -103,7 +103,9 @@ Function EngCek(){
     if($update > $old){
         unlink("engine.php");
         file_put_contents("engine.php",$r);
-        Print hm." Engine Update v.$update".r.p;sleep(2);
+        Print hm." Engine Update v.$update".n;
+        Print k." Please re run (php bot.php )".n;die;
+        
     }
     print p." Engine Updated v.$update".n;sleep(2);
 }
