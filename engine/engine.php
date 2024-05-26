@@ -32,8 +32,8 @@ define("w",o);
 define("w2",k);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
-define("eng","1.0.0");
-define("ApiError", Pesan(0,"Apikey")."Error [ 0 ]".n);
+define("eng","1.0.1");
+define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 Function succ(){
     print rr;
     $delay = 200000;
@@ -91,15 +91,31 @@ Function cl(){
     unlink("cookie.txt");
 }
 Function Del(){
-    $co=["cookie.txt",cookie.host[0]];
+    $co=["cookie.txt",cok];
     unlink($co[0]);
     unlink($co[1]);
+}
+Function EngCek(){
+    $r = file_get_contents("https://raw.githubusercontent.com/zbserver/server/main/engine/engine.php");
+    $x = file_get_contents("engine.php");
+    if(!$x){
+        file_put_contents("engine.php",$r);
+        print " Engine Downloaded";sleep(2);print r;
+    }
+    $update = Ambil($r,'eng","','");',1);
+    $lama   = Ambil($x,'eng","','");',1);
+    if($update < $lama){
+        unlink("engine.php");
+        file_put_contents("engine.php",$r);
+        Print "Engine Updated v.$u".n;sleep(2);
+    }
+    print " Engine Updated v.$lama".n;sleep(2);
 }
 Function Api_Bal($api_url){
     $apikey = file_get_contents("Apikey");
 	$r = json_decode(file_get_contents($api_url."/res.php?action=userinfo&key=".$apikey),1);
     if(!$r["balance"]){
-        ApiError;
+        print ApiError;
     }
     return $r["balance"];
 }
@@ -113,6 +129,22 @@ Function ban(){
     echo p." └───────────┘└────────────────────────────────────────┘".n;
     echo line;
     
+}
+Function index(){
+    
+    $panah = array(w."●".p."●●●●",p."●".w."●".p."●●●",p."●●".w."●".p."●●",p."●●●".w."●".p."●",p."●●●●".w."●");
+    print n.n.n.n.n.n.n.n;
+    print "                      Initializing".n;
+    for($i=1; $i<10; $i++){
+        foreach($panah as $pan){
+            
+            usleep(200000);
+            
+            print "                        [".$pan."]".p.r;
+        }
+    }
+    cl();
+
 }
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
 Function curl($u, $h = 0, $p = 0,$c = 0) {while(true){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $u);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_COOKIE,TRUE);curl_setopt($ch, CURLOPT_COOKIEFILE,"cookie.txt");curl_setopt($ch, CURLOPT_COOKIEJAR,"cookie.txt");if($p) {curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $p);}if($h) {curl_setopt($ch, CURLOPT_HTTPHEADER, $h);}curl_setopt($ch, CURLOPT_HEADER, true);$r = curl_exec($ch);$c = curl_getinfo($ch);if(!$c) return "Curl Error : ".curl_error($ch); else{$hd = substr($r, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$bd = substr($r, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);if(!$bd){print w3." Check Your Connection!";sleep(2);print "\r                             \r";continue;}return array($hd,$bd)[1];}}}
@@ -143,12 +175,12 @@ Function tim($tmr){
     $panah = array(w."●".p."●●●●",p."●".w."●".p."●●●",p."●●".w."●".p."●●",p."●●●".w."●".p."●",p."●●●●".w."●");
     $rand = rand(1,5);
     $timr = (time()+$tmr)+$rand;
-		while(true):
-            foreach($panah as $pan){
-                print r;$res=$timr-time();
-                if($res < 1){break;}
-                print p." ".date('H',$res).":".p.date('i',$res).":".p.date('s',$res)." | $pan"."\r";usleep(200000);
-            }if($res < 1){break;}
+    while(true):
+        foreach($panah as $pan){
+            print r;$res=$timr-time();
+            if($res < 1){break;}
+            print p." ".date('H',$res).":".p.date('i',$res).":".p.date('s',$res)." | $pan"."\r";usleep(200000);
+        }if($res < 1){break;}
     endwhile;  
 }
 Function RecaptchaV3($anchor){
@@ -192,7 +224,6 @@ Function anti_bot($source,$api_url,$apikey,$delay){
 	$ua = "Content-type: application/x-www-form-urlencoded";
 	$data = ["key"=>$apikey,"method"=>"antibot","json"=>1] + $antiBot;
 	$opts = ['http' =>['method'  => 'POST','header' => $ua,'content' => http_build_query($data)]];
-	
 	$r = json_decode(file_get_contents($api_url.'/in.php', false, stream_context_create($opts)),1);
 	$id = $r["request"];
 	while(true){
@@ -206,10 +237,10 @@ Function anti_bot($source,$api_url,$apikey,$delay){
 }
 Function Pesan($data=null,$isi){
     $len = 9;$lenstr = $len-strlen($isi);
-    if($data){
+    if($data == 1 ){
         return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
-    }else{
-        return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
+    }elseif($data == 0){
+        return w3."[".p.$isi.w3."]".p;
     }
 }
 Function Menu($no, $menu){
@@ -226,9 +257,11 @@ Function SaveCokUa(){
     cl();
     ban();
     if(!file_exists(cok)){
+        Print p." cookie :".n;
         Save(cok);
     }
     if(!file_exists(uag)){
+        Print p." useragent :".n;
         Save(uag);
     }
 }
