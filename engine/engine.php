@@ -97,6 +97,7 @@ Function Del(){
 }
 Function EngCek(){
     print hm."                    Checking Update ...";sleep(2);print r;
+    system("clear");
     $r = file_get_contents("https://raw.githubusercontent.com/zbserver/server/main/engine/engine.php");
     $x = file_get_contents("engine.php");
     $update = Ambil($r,'eng","','");',1);
@@ -105,9 +106,9 @@ Function EngCek(){
         unlink("engine.php");
         file_put_contents("engine.php",$r);
         Print hm."                    Engine Update v.$update".n.n;
-        Print p."                Please re run [ ".k."php bot.php".p." ]".n;die;
+        Print p."             Please re run [".k."php bot.php".p."]".n;die;
     }
-    //print p." Engine Updated v.$update".n;sleep(2);
+    print p."                   No updates found";sleep(2);print r;
 }
 Function Api_Bal($api_url){
     $apikey = file_get_contents("Apikey");
