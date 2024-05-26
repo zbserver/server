@@ -129,6 +129,12 @@ Function ban(){
     
 }
 Function index(){
+    $r = file_get_contents("https://raw.githubusercontent.com/zbserver/server/main/engine/engine.php");
+    if(!$r){
+        file_put_contents("engine.php");
+        print k." Downloaded Engine.php".n;
+        Print k." Please re run (php bot.php )".n;die;
+    }
     $panah = array(w."●".p."●●●●",p."●".w."●".p."●●●",p."●●".w."●".p."●●",p."●●●".w."●".p."●",p."●●●●".w."●");
     print n.n.n.n.n.n.n.n;
     print "                      Initializing".n;
