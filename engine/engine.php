@@ -34,40 +34,15 @@ define("w3",m);
 define("cpm",["","√","+","-","!"]);
 define("eng","1.0.1");
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
-Function succ(){
-    print rr;
-    $delay = 200000;
-    print k." Wait.".r;
-    usleep($delay);
-    print " Wait..".r;
-    usleep($delay);
-    print " Wait...".r;
-    usleep($delay);
-    print " Wait....".r;
-    usleep($delay);
-    print " Wait.....".r;
-    usleep($delay);
-    print " Wait......".r;
-    usleep($delay);
-    sleep(2);
-    print rr;
-}
 Function load(){
     print rr;
-    $delay = 500000;
-    print k." Wait.".r;
-    usleep($delay);
-    print " Wait..".r;
-    usleep($delay);
-    print " Wait...".r;
-    usleep($delay);
-    print " Wait....".r;
-    usleep($delay);
-    print " Wait.....".r;
-    usleep($delay);
-    print " Wait......".r;
-    usleep($delay);
-    sleep(2);
+    $wait =[" Wait."," Wait.."," Wait..."," Wait...."," Wait....."," Wait......"];
+    for($i=1; $i<3; $i++){
+        foreach($wait as $waitt){
+            usleep(400000);
+            print $waitt.p.r;
+        }
+    }
     print rr;
 }
 Function bps_cap(){
