@@ -103,9 +103,8 @@ Function EngCek(){
     if($update > $old){
         unlink("engine.php");
         file_put_contents("engine.php",$r);
-        Print hm." Engine Update v.$update".n;
-        Print k." Please re run (php bot.php )".n;die;
-        
+        Print hm." Engine Update v.$update".n.n;
+        Print p." Please re run (php bot.php )".n;die;
     }
     print p." Engine Updated v.$update".n;sleep(2);
 }
@@ -126,9 +125,9 @@ Function ban(){
     echo p." │".p."  Zerobot  ".p."││ Status    ".panah.p."Free Not For Sale".n;
     echo p." └───────────┘└────────────────────────────────────────┘".n;
     echo line;
-    
 }
 Function index(){
+    cl();
     $r = file_get_contents("https://raw.githubusercontent.com/zbserver/server/main/engine/engine.php");
     if(!$r){
         file_put_contents("engine.php");
