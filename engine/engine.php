@@ -145,6 +145,8 @@ Function index(){
         }
     }
     cl();
+    EngCek();
+
 
 }
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
