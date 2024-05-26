@@ -104,7 +104,7 @@ Function EngCek(){
         unlink("engine.php");
         file_put_contents("engine.php",$r);
         Print hm." Engine Update v.$update".n.n;
-        Print p." Please re run (php bot.php )".n;die;
+        Print p." Please re run [ ".k."php bot.php".p." ]".n;die;
     }
     print p." Engine Updated v.$update".n;sleep(2);
 }
@@ -132,7 +132,7 @@ Function index(){
     if(!$r){
         file_put_contents("engine.php");
         print k." Downloaded Engine.php".n;
-        Print k." Please re run (php bot.php )".n;die;
+        Print p." Please re run [ ".k."php bot.php".p." ]".n;die;
     }
     $panah = array(w."●".p."●●●●",p."●".w."●".p."●●●",p."●●".w."●".p."●●",p."●●●".w."●".p."●",p."●●●●".w."●");
     print n.n.n.n.n.n.n.n;
