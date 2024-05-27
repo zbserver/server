@@ -32,7 +32,7 @@ define("w",o);
 define("w2",k);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
-define("eng","1.0.0");
+define("eng","1.0.1");
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
