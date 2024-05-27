@@ -1,5 +1,5 @@
 <?php
-require("App/app.php");
+
 define('host',['leofaucet','leofaucet.com','']);
 define('version','1.0');
 define('cok','cok.'.host[0]);
