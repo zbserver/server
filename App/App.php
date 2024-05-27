@@ -91,7 +91,7 @@ Function EngCek(){
     print p."                   No updates found";sleep(2);print r;
 }
 Function Api_Bal($api_url){
-    $apikey = file_get_contents("Apikey");
+    $apikey = file_get_contents("Data/Apikey");
 	$r = json_decode(file_get_contents($api_url."/res.php?action=userinfo&key=".$apikey),1);
     if(!$r["balance"]){
         print ApiError;
@@ -114,7 +114,8 @@ Function init(){
     if(!$r){
         file_put_contents(App);
         $x=file_get_contents(App);
-        print k." Downloaded App".n;
+        $d = Ambil($x,'eng","','");',1);
+        print k." Downloaded Engine v".$d.n;
         Print p." Please re run [ ".k."php bot.php".p." ]".n;die;
     }
     $panah = array(w."●".p."●●●●",p."●".w."●".p."●●●",p."●●".w."●".p."●●",p."●●●".w."●".p."●",p."●●●●".w."●");
