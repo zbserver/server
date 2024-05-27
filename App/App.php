@@ -78,11 +78,8 @@ Function EngCek(){
     if(!is_dir("App")){
         system("mkdir App");
     }
-    if(file_exists(Engine)){
-        $x = file_get_contents(App);
-    }else{
-        $r = file_get_contents(Server.App);
-    }
+    $x = file_get_contents(App);
+    $r = file_get_contents(Server.App);
     $update = Ambil($r,'eng","','");',1);
     $old  = Ambil($x,'eng","','");',1);
     if($update > $old){
