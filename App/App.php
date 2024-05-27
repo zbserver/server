@@ -148,7 +148,7 @@ Function init(){
     for($i=1; $i<10; $i++){
         foreach($panah as $pan){
             usleep(200000);
-            print "                        [".$pan."]".p.r;
+            print p."                        [".$pan.p."]".p.r;
         }
     }
     cl();
