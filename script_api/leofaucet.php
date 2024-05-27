@@ -1,3 +1,4 @@
+<?php
 require_once("engine.php");
 define('host',['leofaucet','leofaucet.com','']);
 define('version','1.0');
@@ -5,7 +6,7 @@ define('cok','cok.'.host[0]);
 define('uag','ua');
 define('web','https://'.host[1]);
 
-index();
+init();
 apikey:
 ban();
 print "  Menu apikey".n;
