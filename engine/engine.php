@@ -103,7 +103,7 @@ Function ban(){
     echo p." └───────────┘└────────────────────────────────────────┘".n;
     echo line;
 }
-Function index(){
+Function init(){
     cl();
     $r = file_get_contents("https://raw.githubusercontent.com/zbserver/server/main/engine/engine.php");
     if(!$r){
