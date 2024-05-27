@@ -32,7 +32,7 @@ define("w",o);
 define("w2",k);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
-define("eng","1.0.1");
+define("eng","1.0.0");
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
@@ -43,7 +43,7 @@ Function Efek($str,$usleep){$arr = str_split($str);foreach ($arr as $az){print $
 Function Ambil($res,$depan,$belakang,$nomor){$data=explode($belakang,explode($depan,$res)[$nomor])[0];return $data;} 
 Function Ambil_1($res,$pemisah){$data=explode($pemisah,$res)[0];return $data;}
 Function AntiBot($res,$Nomor){$AntiBot = Ambil($res,'rel=\"','\"',$Nomor);return $AntiBot;}
-Function Save($file){if(file_exists($file)){$data = file_get_contents("Data/".$file);}else{$data = readline(k." Input ".p.$file." : ".n);print n;file_put_contents("Data/".$file,$data);}return $data;}
+Function Save($file){if(file_exists("Data/".$file)){$data = file_get_contents("Data/".$file);}else{$data = readline(k." Input ".p.$file." : ".n);print n;file_put_contents("Data/".$file,$data);}return $data;}
 Function multi($wallet){$tambah = readline(" ".w3."Input ".$wallet." :".p);$save = fopen($wallet, "a");fwrite($save, $tambah.n);fclose($save);sleep(1);print p." Success add ".w3.$wallet.n.p;sleep(1);}
 Function get($url){return curl($url,h());}
 Function post($url,$data){return curl($url,h(),$data);}
