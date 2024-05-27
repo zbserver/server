@@ -32,7 +32,7 @@ define("w",o);
 define("w2",k);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
-define("eng","1.0.1");
+define("eng","1.0.0");
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
@@ -109,8 +109,8 @@ Function EngCek(){
     if($update > $old){
         unlink(App);
         file_put_contents(App,$r);
-        Print hm."                Download Update v.$update Done".n.n;
-        Print p."             Please re run [".k."php bot.php".p."]".n;die;
+        Print p."                Download Update ".p."[".k."v".$update.p."] Done".n.n;
+        Print p."               Please re run [".k."php bot.php".p."]".n;die;
     }
     print p."                   Latest Version :".$x;sleep(2);print r;
 }
