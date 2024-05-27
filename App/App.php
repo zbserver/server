@@ -109,7 +109,7 @@ Function EngCek(){
     if($update > $old){
         unlink(App);
         file_put_contents(App,$r);
-        Print p."                Download Update ".p."[".k."v".$update.p."] Done".n.n;
+        Print p."              Updated Engine ".p."[".k."v".$update.p."] Done".n.n;
         Print p."               Please re run [".k."php bot.php".p."]".n;die;
     }
     print p."                   Latest Version :".$x;sleep(2);print r;
