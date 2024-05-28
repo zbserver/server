@@ -4,6 +4,7 @@ define('version','1.0');
 define('cok','cok.'.host[0]);
 define('uag','ua');
 define('web','https://'.host[1]);
+
 init();
 apikey:
 ban();
