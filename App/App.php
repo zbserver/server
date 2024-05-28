@@ -32,7 +32,7 @@ define("w",o);
 define("w2",k);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
-define("eng","1.0.0");
+define("eng","1.0.1");
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
@@ -85,7 +85,6 @@ Function bps_anbot(){
     print rr;
 }
 Function cl(){
-    //error_reporting(0);
     system("clear");
     unlink("alom.tmp-15d94603.tmp.");
     unlink("tmp");
@@ -93,8 +92,8 @@ Function cl(){
 }
 Function Del(){
     $co=["cookie.txt",cok];
-    unlink($co[0]);
-    unlink($co[1]);
+    unlink("Data/".$co[0]);
+    unlink("Data/".$co[1]);
 }
 Function EngCek(){
     print hm."                    Checking Update ...";sleep(2);print r;
@@ -104,15 +103,14 @@ Function EngCek(){
     }
     $x = file_get_contents(App);
     $r = file_get_contents(Server.App);
-    $update = Ambil($r,'eng","','");',1);
-    $old  = Ambil($x,'eng","','");',1);
-    if($update > $old){
+    $server = Ambil($r,'eng","','");',1);
+    $local  = Ambil($x,'eng","','");',1);
+    if($server > $local){
         unlink(App);
         file_put_contents(App,$r);
-        Print p."              Updated Engine ".p."[".k."v".$update.p."] Done".n.n;
+        Print p."              Updated Engine ".p."[".k."v".$server.p."] Done".n.n;
         Print p."               Please re run [".k."php bot.php".p."]".n;die;
-    }
-    print p."                   Latest Version :".$update;sleep(2);print r;
+    }else{print p."                   Latest Version :".$local;sleep(2);print r;}
 }
 Function Api_Bal($api_url){
     $apikey = file_get_contents("Data/Apikey");
