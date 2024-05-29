@@ -1,17 +1,16 @@
 <?php
 define('host',['leofaucet','leofaucet.com','']);
-define('version','1.0');
+define('version','1.1');
 define('cok','cok.'.host[0]);
 define('uag','ua');
 define('web','https://'.host[1]);
-
 init();
 apikey:
 ban();
-print "  Menu apikey".n;
+Print " ".Pesan(0, "Menu apikey").n;
 Menu(1,"Xevil");
 Menu(2,"Multibot");
-$pilih = readline(Select("Number"));
+$pilih = readline(" ".Pesan(0,"Input : ".p));
 if($pilih == 1){
     $api_url="http://api.sctg.xyz";
     Print w3." Xevil : ".p.n;
@@ -22,7 +21,7 @@ if($pilih == 1){
     Save("Apikey");  
 }else{print k." Bad Number".n;sleep(3);goto apikey;}
 
-if(!file_exists("Data/Apikey")){
+if(!file_exists(Data."Apikey")){
     goto apikey;
 }
 Awal:
@@ -30,15 +29,15 @@ SaveCokUa();
 ban();
 Function h(){
     $h[] = "Host: ".host[1];
-    $h[] = "cookie: ".file_get_contents("Data/".cok);
-    $h[] = "user-agent: ".file_get_contents("Data/".uag);
+    $h[] = "cookie: ".file_get_contents(Data.cok);
+    $h[] = "user-agent: ".file_get_contents(Data.uag);
     $h[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
 	$h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
     return $h;
 }
 Function Firewall($api_url){
     Firewall:
-    $apikey=file_get_contents("Data/Apikey");
+    $apikey=file_get_contents(Data."Apikey");
     $r = get(web."/firewall");
     $tok= Ambil($r,'<input type="hidden" name="_token" value="','">',1);
     $sitekey=Ambil($r,'data-sitekey=','>',1);
@@ -52,8 +51,8 @@ Function Firewall($api_url){
     $data ="_token=$tok&g-recaptcha-response=$cap&h-captcha-response=$cap";
     post(web."/firewall/action",$data);
 }
-$apikey=file_get_contents("Data/Apikey");
-print p." Prosess..".r;sleep(2);
+$apikey=file_get_contents(Data."/Apikey");
+print load();print r;sleep(2);
 $r = get(web."/dashboard");
 $lg = Ambil($r,'user-name-text">','</span>',1);
 $b = Ambil($r,"<option selected=''>"," coins",1);
