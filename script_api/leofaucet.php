@@ -1,4 +1,4 @@
-<?php
+
 define('host',['leofaucet','leofaucet.com','']);
 define('version','1.1');
 define('cok','cok.'.host[0]);
