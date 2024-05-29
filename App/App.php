@@ -1,4 +1,5 @@
 <?php
+define("eng","1.0.2");
 define("a","\033[1;30m");
 define("d","\033[0m");
 define("m","\033[1;31m");
@@ -32,10 +33,10 @@ define("w",o);
 define("w2",k);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
-define("eng","1.0.1");
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
+define("Data","Data/");
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
 Function curl($u, $h = 0, $p = 0,$c = 0) {while(true){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $u);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_COOKIE,TRUE);curl_setopt($ch, CURLOPT_COOKIEFILE,"cookie.txt");curl_setopt($ch, CURLOPT_COOKIEJAR,"cookie.txt");if($p) {curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $p);}if($h) {curl_setopt($ch, CURLOPT_HTTPHEADER, $h);}curl_setopt($ch, CURLOPT_HEADER, true);$r = curl_exec($ch);$c = curl_getinfo($ch);if(!$c) return "Curl Error : ".curl_error($ch); else{$hd = substr($r, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$bd = substr($r, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);if(!$bd){print w3." Check Your Connection!";sleep(2);print "\r                             \r";continue;}return array($hd,$bd)[1];}}}
 Function gas($url, $post = 0, $httpheader = 0, $proxy = 0){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $url);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_TIMEOUT, 60);curl_setopt($ch, CURLOPT_COOKIE,TRUE);if($post){curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $post);}if($httpheader){curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader);}if($proxy){curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);curl_setopt($ch, CURLOPT_PROXY, $proxy);}curl_setopt($ch, CURLOPT_HEADER, true);$response = curl_exec($ch);$httpcode = curl_getinfo($ch);if(!$httpcode) return "Curl Error : ".curl_error($ch); else{$header = substr($response, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$body = substr($response, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);return array($header, $body);}}
@@ -43,7 +44,7 @@ Function Efek($str,$usleep){$arr = str_split($str);foreach ($arr as $az){print $
 Function Ambil($res,$depan,$belakang,$nomor){$data=explode($belakang,explode($depan,$res)[$nomor])[0];return $data;} 
 Function Ambil_1($res,$pemisah){$data=explode($pemisah,$res)[0];return $data;}
 Function AntiBot($res,$Nomor){$AntiBot = Ambil($res,'rel=\"','\"',$Nomor);return $AntiBot;}
-Function Save($file){if(file_exists("Data/".$file)){$data = file_get_contents("Data/".$file);}else{$data = readline(k." Input ".p.$file." : ".n);print n;file_put_contents("Data/".$file,$data);}return $data;}
+Function Save($file){if(file_exists(Data.$file)){$data = file_get_contents(Data.$file);}else{$data = readline(k." Input ".p.$file." : ".n);print n;file_put_contents(Data.$file,$data);}return $data;}
 Function multi($wallet){$tambah = readline(" ".w3."Input ".$wallet." :".p);$save = fopen($wallet, "a");fwrite($save, $tambah.n);fclose($save);sleep(1);print p." Success add ".w3.$wallet.n.p;sleep(1);}
 Function get($url){return curl($url,h());}
 Function post($url,$data){return curl($url,h(),$data);}
@@ -86,31 +87,29 @@ Function bps_anbot(){
 }
 Function cl(){
     system("clear");
-    unlink("alom.tmp-15d94603.tmp.");
-    unlink("tmp");
-    unlink("cookie.txt");
 }
 Function Del(){
     $co=["cookie.txt",cok];
-    unlink("Data/".$co[0]);
-    unlink("Data/".$co[1]);
+    unlink(Data.$co[0]);
+    unlink(Data.$co[1]);
 }
 Function EngCek(){
+    print n.n.n.n.n.n.n.n.n.n;
     print hm."                    Checking Update ...";sleep(2);print r;
     system("clear");
     if(!is_dir("App")){
         system("mkdir App");
     }
-    $x = file_get_contents(App);
-    $r = file_get_contents(Server.App);
-    $server = Ambil($r,'eng","','");',1);
-    $local  = Ambil($x,'eng","','");',1);
-    if($server > $local){
+    $Local = file_get_contents(App);
+    $Server = file_get_contents(Server.App);
+    $Ver_server = Ambil($Server,'eng","','");',1);
+    $Ver_local  = Ambil($Local,'eng","','");',1);
+    if($Ver_server > $Ver_local){
         unlink(App);
         file_put_contents(App,$r);
-        Print p."              Updated Engine ".p."[".k."v".$server.p."] Done".n.n;
+        Print p."              Updated Engine ".p."[".k."v".$Ver_server.p."] Done".n.n;
         Print p."               Please re run [".k."php bot.php".p."]".n;die;
-    }else{print p."                   Latest Version :".$local;sleep(2);print r;}
+    }else{print p."                   Latest Version :".$Ver_local;sleep(2);print r;}
 }
 Function Api_Bal($api_url){
     $apikey = file_get_contents("Data/Apikey");
@@ -141,7 +140,7 @@ Function init(){
         Print p." Please re run [ ".k."php bot.php".p." ]".n;die;
     }
     $panah = array(w."●".p."●●●●",p."●".w."●".p."●●●",p."●●".w."●".p."●●",p."●●●".w."●".p."●",p."●●●●".w."●");
-    print n.n.n.n.n.n.n.n;
+    print n.n.n.n.n.n.n.n.n.n;
     print "                      Initializing".n;
     for($i=1; $i<10; $i++){
         foreach($panah as $pan){
@@ -228,8 +227,8 @@ Function Pesan($data=null,$isi){
 Function Menu($no, $menu){
     return print w3." [".p.$no.w3."] ".p.$menu.n;
 }
-Function Select($str){
-    return print w3." [".p."Input ".$str.w3."] ".n." ".p;
+Function Select($nomor){
+    return print " Input : ";
 }
 Function Riwayat($newdata,$data=0){
     if(!$data){$data = [];}
