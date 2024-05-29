@@ -1,5 +1,8 @@
 <?php
-define("eng","1.0.0");
+// Author   : Zerobot |--
+// Version  : 1.0.0 |--
+// Telegram : t.me/official_zerobot |--
+
 define("a","\033[1;30m");
 define("d","\033[0m");
 define("m","\033[1;31m");
