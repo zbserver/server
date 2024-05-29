@@ -66,6 +66,7 @@ Faucet:
 while(true){
     $pageurl= web."/faucet";
     $r=get($pageurl);
+    if(preg_match("/Limit Over/",$r)){print k." Limit Over! Cannot Claim".n;die;}
     if(preg_match("/Firewall/",$r)){Firewall($api_url);goto Faucet;}
     $time= Ambil($r,'<h4 class=" mb-0" id="timer_text">','</h4>',1);
     if($time){
