@@ -102,20 +102,19 @@ Function Del(){
 Function EngCek(){
     print n.n.n.n.n.n.n.n.n.n;
     print hm."                    Checking Update ...";sleep(2);print r;
-    system("clear");
     if(!is_dir("App")){
         system("mkdir App");
     }
-    $Local = file_get_contents(App);
+    $Lokal = file_get_contents(App);
     $Server = file_get_contents(Server.App);
-    $Ver_server = Ambil($Server,'eng","','");',1);
-    $Ver_local  = Ambil($Local,'eng","','");',1);
-    if($Ver_server > $Ver_local){
+    $Ver_server = Ambil($Server,"Version  : "," |--",1);
+    $Ver_lokal  = Ambil($Lokal,"Version  : "," |--",1);
+    if($Ver_server > $Ver_lokal){
         unlink(App);
         file_put_contents(App,$Server);
         Print p."              Updated Engine ".p."[".k."v".$Ver_server.p."] Done".n.n;
         Print p."               Please re run [".k."php bot.php".p."]".n;die;
-    }else{print p."                   Latest Version :".$Ver_local;sleep(2);print r;}
+    }else{print p."                   Latest Version :".$Ver_lokal;sleep(2);print r;}
 }
 Function Api_Bal($api_url){
     $apikey = file_get_contents("Data/Apikey");
@@ -127,10 +126,13 @@ Function Api_Bal($api_url){
 }
 Function ban(){
     cl();
+    $res = file_get_contents(App);
+    $versi=Ambil($res,"Version  : "," |--",1);
+    $tele =Ambil($res,"Telegram : "," |--",1);
     echo p." ┌───────────┐┌────────────────────────────────────────┐".n;
-    echo p." │".m."  ┌─┐┌┐┌┬┐ ".p."││ Bot Engine".panah.p.eng.n;
-    echo p." │".m."  ┌─┘├┴┐│  ".p."││ Script    ".panah.m.host[0].n;
-    echo p." │".m."  └─┘└─┘┴  ".p."││ Version   ".panah.p.version.n;
+    echo p." │".m."  ┌─┐┌┐┌┬┐ ".p."││ Bot Engine".panah.p.$versi.n;
+    echo p." │".m."  ┌─┘├┴┐│  ".p."││ Script    ".panah.m.host[0]." v.".version.n;
+    echo p." │".m."  └─┘└─┘┴  ".p."││ Telegram  ".panah.p.$tele.n;
     echo p." │".p."  Zerobot  ".p."││ Status    ".panah.p."Free Not For Sale".n;
     echo p." └───────────┘└────────────────────────────────────────┘".n;
     echo line;
