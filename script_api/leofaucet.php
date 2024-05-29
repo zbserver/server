@@ -1,8 +1,8 @@
-
+<?php
 define('host',['leofaucet','leofaucet.com','']);
-define('version','1.1');
-define('cok','cok.'.host[0]);
-define('uag','ua');
+define('version','1.0');
+define('cok','cookie.'.host[0]);
+define('uag','user_agent');
 define('web','https://'.host[1]);
 init();
 apikey:
@@ -10,7 +10,7 @@ ban();
 Print " ".Pesan(0, "Menu apikey").n;
 Menu(1,"Xevil");
 Menu(2,"Multibot");
-$pilih = readline(" ".Pesan(0,"Input : ".p));
+$pilih = readline(" ".Pesan(0,"Input ".p).panah.p);
 if($pilih == 1){
     $api_url="http://api.sctg.xyz";
     Print w3." Xevil : ".p.n;
