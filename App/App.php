@@ -1,5 +1,5 @@
 <?php
-define("eng","1.0.2");
+define("eng","1.0.1");
 define("a","\033[1;30m");
 define("d","\033[0m");
 define("m","\033[1;31m");
@@ -106,7 +106,7 @@ Function EngCek(){
     $Ver_local  = Ambil($Local,'eng","','");',1);
     if($Ver_server > $Ver_local){
         unlink(App);
-        file_put_contents(App,$r);
+        file_put_contents(App,$Server);
         Print p."              Updated Engine ".p."[".k."v".$Ver_server.p."] Done".n.n;
         Print p."               Please re run [".k."php bot.php".p."]".n;die;
     }else{print p."                   Latest Version :".$Ver_local;sleep(2);print r;}
