@@ -1,5 +1,5 @@
 <?php
-define('host',['icucu','icucu.icu/','']);
+define('host',['icucu','icucu.icu','']);
 define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
@@ -17,22 +17,21 @@ login();
 Function login(){
     
     ban();
-    
     save("Wallet");
-    $Wallet=file_get_contents("Wallet");
+    $Wallet=file_get_contents(Data."Wallet");
     ban();
-    get(host[1]);
+    get(web);
     $data = "address=$Wallet&test=";
-    post(host[1],$data);
+    post(web,$data);
     
     $r= get(web);
 
     $usn=Ambil($r,'<td class="tr-cc" colspan="2">','</',1);
     $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
-    print p." ".line();
-    print p.cek("~")." Login".panah.hm.trim($usn).n;
-    print p.cek("~")." Total Earning".panah.o.$Earn." Dogecoin".n;
-    print p." ".line();
+    print p.line();
+    print p.cpm[1]." Login".panah.hm.trim($usn).n;
+    print p.cpm[1]." Total Earning".panah.o.$Earn." Dogecoin".n;
+    print p.line();
     
     while(true){
         $r= get(web);
