@@ -1,6 +1,6 @@
 <?php
 define('host',['icucu','icucu.icu','']);
-define('version','1.0.SSS');
+define('version','1.0.XXX');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]."/doge/");
@@ -29,8 +29,8 @@ Function login(){
     $usn=Ambil($r,'<td class="tr-cc" colspan="2">','</',1);
     $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
     print p.line();
-    print p.Pesan(cpm[1])." Login".panah.hm.trim($usn).n;
-    print p.Pesan(cpm[1])."Total Earning".panah.o.$Earn." Dogecoin".n;
+    print p.Menu(cpm[1]).p."Login        ".panah.hm.trim($usn).n;
+    print p.Menu(cpm[1]).p."Total Earning".panah.o.$Earn." Dogecoin".n;
     print p.line();
     
     while(true){
