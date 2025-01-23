@@ -9,7 +9,7 @@ Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "user-agent: ".getUserAgent();
     $h[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
-	$h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
+    $h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
     return $h;
 }
 init();
@@ -29,8 +29,8 @@ Function login(){
     $usn=Ambil($r,'<td class="tr-cc" colspan="2">','</',1);
     $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
     print " ".line();
-    print " ".w2."[".p.cpm[1].w2."]".p."Login        ".panah.o.trim($usn).n;
-    print " ".w2."[".p.cpm[1].w2."]".p."Total Earning".panah.p.$Earn.o." Dogecoin".n;
+    print " ".w2."[".p.cpm[1].w2."]".p." Login        ".panah.p.trim($usn).n;
+    print " ".w2."[".p.cpm[1].w2."]".p." Total Earning".panah.p.$Earn.p." Dogecoin".n;
     print " ".line();
     
     while(true){
@@ -59,8 +59,8 @@ Function login(){
         if($reward){
             if(preg_match("/ was sent to your account in FaucetPay.io/",$reward)){
                 $potong= str_replace(" was sent to your account in FaucetPay.io",p." sent to FaucetPay.io",$reward);
-                print " ".w2."[".p.cpm[1].w2."]".p." Reward       ".panah.trim($potong).n;
-                print " ".w2."[".p.cpm[2].w2."]".p." Total Earning".panah.hm.$Earn.o." Dogecoin".n;
+                print " ".w2."[".p.cpm[1].w2."]".p." Reward       ".panah.p.trim($potong).n;
+                print " ".w2."[".p.cpm[2].w2."]".p." Total Earning".panah.p.$Earn.p." Dogecoin".n;
                 print " ".line(); goto out;
             }  
         }else{keluar: print cpm[4]."Expired!!! Claim Shortlink to continue!!!".n;die();}
