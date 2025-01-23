@@ -35,7 +35,7 @@ define("n","\n");
 define("line",p." ".str_repeat("─",55).n);
 define("panah",k." › ");
 define("panah1"," [›] ".p);
-define("w",o);
+define("w",m);
 define("w2",m);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
