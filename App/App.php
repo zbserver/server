@@ -36,7 +36,7 @@ define("line",p." ".str_repeat("─",55).n);
 define("panah",k." › ");
 define("panah1"," [›] ".p);
 define("w",o);
-define("w2",k);
+define("w2",m);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
