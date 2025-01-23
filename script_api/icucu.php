@@ -1,6 +1,6 @@
 <?php
 define('host',['icucu','icucu.icu','']);
-define('version','1.0.XXX');
+define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]."/doge/");
@@ -29,8 +29,8 @@ Function login(){
     $usn=Ambil($r,'<td class="tr-cc" colspan="2">','</',1);
     $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
     print p.line();
-    print p.Menu(cpm[1]).p."Login        ".panah.hm.trim($usn).n;
-    print p.Menu(cpm[1]).p."Total Earning".panah.o.$Earn." Dogecoin".n;
+    print w2."[".cpm[1].w2."]".p."Login        ".panah.hm.trim($usn).n;
+    print w2."[".cpm[1].w2."]".p."Total Earning".panah.b.$Earn." Dogecoin".n;
     print p.line();
     
     while(true){
@@ -59,8 +59,8 @@ Function login(){
         if($reward){
             if(preg_match("/ was sent to your account in FaucetPay.io/",$reward)){
                 $potong= str_replace(" was sent to your account in FaucetPay.io",p." sent to FaucetPay.io",$reward);
-                print cpm[1].w3." ".trim($potong).n;
-                print cpm[2].p." "."Total Earning".panah.hm.$Earn." Dogecoin".n;
+                print print w2."[".cpm[1].w2."]".w3." ".trim($potong).n;
+                print print w2."[".cpm[2].w2."]"."Total Earning".panah.hm.$Earn." Dogecoin".n;
                 print line(); goto out;
             }  
         }else{keluar: print cpm[4]."Expired!!! Claim Shortlink to continue!!!".n;die();}
