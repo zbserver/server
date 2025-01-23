@@ -28,10 +28,10 @@ Function login(){
 
     $usn=Ambil($r,'<td class="tr-cc" colspan="2">','</',1);
     $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
-    print p.line();
-    print w2."[".p.cpm[1].w2."]".p."Login        ".panah.hm.trim($usn).n;
-    print w2."[".p.cpm[1].w2."]".p."Total Earning".panah.b.$Earn." Dogecoin".n;
-    print p.line();
+    print " ".line();
+    print " ".w2."[".p.cpm[1].w2."]".p."Login        ".panah.o.trim($usn).n;
+    print " ".w2."[".p.cpm[1].w2."]".p."Total Earning".panah.p.$Earn.o." Dogecoin".n;
+    print " ".line();
     
     while(true){
         $r= get(web);
@@ -53,15 +53,15 @@ Function login(){
         $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
         if(preg_match("/mbuut The faucet does not have sufficient funds for this transaction./",$reward)){
             print k." The faucet does not have sufficient funds".n;
-            print line();
+            print " ".line();
             goto out;
         }
         if($reward){
             if(preg_match("/ was sent to your account in FaucetPay.io/",$reward)){
                 $potong= str_replace(" was sent to your account in FaucetPay.io",p." sent to FaucetPay.io",$reward);
-                print print w2."[".p.cpm[1].w2."]".w3." ".trim($potong).n;
-                print print w2."[".p.cpm[2].w2."]"."Total Earning".panah.hm.$Earn." Dogecoin".n;
-                print line(); goto out;
+                print " ".w2."[".p.cpm[1].w2."]".p." Reward       ".panah.trim($potong).n;
+                print " ".w2."[".p.cpm[2].w2."]".p." Total Earning".panah.hm.$Earn.o." Dogecoin".n;
+                print " ".line(); goto out;
             }  
         }else{keluar: print cpm[4]."Expired!!! Claim Shortlink to continue!!!".n;die();}
         
