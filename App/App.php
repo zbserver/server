@@ -130,10 +130,10 @@ Function ban(){
     $versi=Ambil($res,"Version  : "," |--",1);
     $tele =Ambil($res,"Telegram : "," |--",1);
     echo p." ┌───────────┐┌────────────────────────────────────────┐".n;
-    echo p." │".m."  ┌─┐┌┐┌┬┐ ".p."││ Bot App  ".panah.p.$versi.n;
-    echo p." │".m."  ┌─┘├┴┐│  ".p."││ Script   ".panah.m.host[0]." v.".version.n;
-    echo p." │".m."  └─┘└─┘┴  ".p."││ Telegram ".panah.p.$tele.n;
-    echo p." │".p."  Zerobot  ".p."││ Status   ".panah.m."Free Not For Sale".n;
+    echo p." │".k."  ┌─┐┌┐┌┬┐ ".p."││ Bot App  ".panah.p.$versi.n;
+    echo p." │".k."  ┌─┘├┴┐│  ".p."││ Script   ".panah.w2.host[0]." v.".version.n;
+    echo p." │".k."  └─┘└─┘┴  ".p."││ Telegram ".panah.p.$tele.n;
+    echo p." │".p."  Zerobot  ".p."││ Status   ".panah.p."Free Not For Sale".n;
     echo p." └───────────┘└────────────────────────────────────────┘".n;
     echo line;
 }
