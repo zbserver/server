@@ -21,9 +21,9 @@ Function login(){
     save("Wallet");
     $Wallet=file_get_contents("Wallet");
     ban();
-    get(host[2]);
+    get(host[1]);
     $data = "address=$Wallet&test=";
-    post(host[2],$data);
+    post(host[1],$data);
     
     $r= get(web);
 
