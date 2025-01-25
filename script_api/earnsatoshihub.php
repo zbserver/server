@@ -51,7 +51,7 @@ Function Login(){
         $r=get(web);
         $token = Ambil($r,"var token = '","'",1);
         $data  = "a=getFaucet&$token&challenge=false&response=false";
-        $r = post(web.'/system/ajax.php',$data);
+        print post(web.'/system/ajax.php',$data); die;
         $r = json_decode($r,1);
         $sukses = $r["message"];
         $status = $r["status"];
