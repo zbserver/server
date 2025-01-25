@@ -4,8 +4,10 @@ define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-init();
+//init();
+include("app.php");
 ban();
+
 
 Awal:
 SaveCokUa();
@@ -32,9 +34,7 @@ Function Login(){
     Faucet:
     while(true){
         $r = get(web);
-
-        $locked=Ambil($r,'<i class="fa fa-exclamation-triangle fa-fw"></i><br/>',' to be able to Roll',1);
-        if(preg_match('/Bonus Roll Locked!/',$r)){print p." Bonus Roll Locked!.".p."You must visit 1 more Shortlinks today".n;die();}
+        if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 10 more Shortlinks today".n;die();}
         $time= Ambil($r,'id="claimTime">','</span>',1);
         if($time){
             if(strpos($time,"hour") !== false){
@@ -48,15 +48,12 @@ Function Login(){
             tim($cektime);
             }
         }
-        $r=get(web);
-        $token = Ambil($r,"var token = '","'",1);
-        $data  = "a=getFaucet&$token&challenge=false&response=false";
-        print post(web.'/system/ajax.php',$data); die;
+        $token = Ambil($r,"var token = '","';",1);
+        $data  = "a=getFaucet&token=$token&challenge=false&response=false";
+        $r = post(web.'/system/ajax.php',$data);
         $r = json_decode($r,1);
         $sukses = $r["message"];
         $status = $r["status"];
-        
-        
         if($status == 200){
             $t = get(web);
             $b = Ambil($t,'Account Balance <div class="text-primary"><b>','</b>',1);
@@ -65,7 +62,7 @@ Function Login(){
             $reward= Ambil($sukses,'and you won ','!',1);
             print " ".w2."[".p.cpm[1].w2."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward.n;
             print " ".w2."[".p.cpm[2].w2."]".p." Balance     ".panah.p.$b.k." / ".p.$coin.n;
-            print " ".Line();
+            print " ".line();
             
         }
     }
