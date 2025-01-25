@@ -4,11 +4,8 @@ define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-//init();
-include("app.php");
+init();
 ban();
-
-
 Awal:
 SaveCokUa();
 ban();
@@ -60,8 +57,8 @@ Function Login(){
             $coin= Ambil($t,'Current Bits Value <div class="text-warning"><b>','</b>',1);
             $nub= Ambil($sukses,' Congratulations, your lucky number was ',' and you won ',1);
             $reward= Ambil($sukses,'and you won ','!',1);
-            print " ".w2."[".p.cpm[1].w2."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward.n;
-            print " ".w2."[".p.cpm[2].w2."]".p." Balance     ".panah.p.$b.k." / ".p.$coin.n;
+            print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward.n;
+            print " ".w3."[".p.cpm[2].w3."]".p." Balance     ".panah.p.$b.k." / ".p.$coin.n;
             print " ".line();
             
         }
