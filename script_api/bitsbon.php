@@ -20,7 +20,7 @@ Function h(){
 Function Login(){
     $r = get(web);
     $lg = Ambil($r,'<font class="text-success">','</font>',1);
-    $coin = Ambil($r,'Current Bits Value <div class="text-warning"><b>','</b>',1);
+    $coin = Ambil($r,'Coins Value <div class="text-success"><b>','</b>',1);
     $b = Ambil($r,'Account Balance <div class="text-primary"><b>','</b>',1);
     $logout= Ambil($r,'<i class="fa fa-power-off"></i> ','</a>',1);
     if(!$logout){print k." Cookie Experied \r";sleep(2);unlink(cok);die;}
@@ -53,8 +53,8 @@ Function Login(){
         $status = $r["status"];
         if($status == 200){
             $t = get(web);
+            $coin = Ambil($t,'Coins Value <div class="text-success"><b>','</b>',1);
             $b = Ambil($t,'Account Balance <div class="text-primary"><b>','</b>',1);
-            $coin= Ambil($t,'Current Bits Value <div class="text-warning"><b>','</b>',1);
             $nub= Ambil($sukses,' Congratulations, your lucky number was ',' and you won ',1);
             $reward= Ambil($sukses,'and you won ','!',1);
             print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward.n;
