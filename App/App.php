@@ -230,6 +230,8 @@ Function Pesan($data=null,$isi){
         return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
     }elseif($data == 0){
         return w3."[".p.$isi.w3."]".p;
+    }elseif($data == 2){
+        return p."[".p.$isi."]".p;
     }
 }
 Function Menu($no, $menu){
