@@ -4,7 +4,8 @@ define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-init();
+include("app.php");
+//init();
 apikey:
 ban();
 Print " ".Pesan(0, "Menu apikey").n;
@@ -66,18 +67,17 @@ while(true){
         tim($cektime);
         }
     }
-    $sitekey=Ambil($r,'data-sitekey=','>',1);
+    $sitekey=Ambil($r,'data-sitekey="','">',1);
     if(!$sitekey){
         print " ".w3."[".p.cpm[4].w3."]".w2." Error sitekey!";
         sleep(2);
         print "\r                      \r";
         continue;   
     }
-    $cap = Captcha($r,$api_url,$apikey, $sitekey, $pageurl,5);
+    $cap = Captcha($r,$api_url,$apikey, $sitekey, $pageurl,8);
     if(!$cap){continue;}
     $token = Ambil($r,"var token = '","';",1);
     $data  = "a=getFaucet&token=$token&captcha=1&challenge=false&response=$cap";
-    Print $data;die;
     $r = post(web.'/system/ajax.php',$data);
     $r = json_decode($r,1);
     $sukses = $r["message"];
@@ -90,7 +90,7 @@ while(true){
         $reward= Ambil($sukses,'and you won ','!',1);
         print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward.n;
         print " ".w3."[".p.cpm[2].w3."]".p." Balance     ".panah.p.$b.k." / ".p.$coin.n;
-        print " ".w3."[".p.cpm[1].w3."]".p." Apikey      ".panah.p.Api_Bal($api_url).n.
+        print " ".w3."[".p.cpm[3].w3."]".p." Apikey      ".panah.p.Api_Bal($api_url).n;
         print " ".line();
         
     }
