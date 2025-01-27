@@ -231,7 +231,7 @@ Function Pesan($data=null,$isi){
     }elseif($data == 0){
         return w3."[".p.$isi.w3."]".p;
     }elseif($data == 2){
-        return p."[".p.$isi."]".p;
+        return p."[".p.$isi.p."]".p;
     }
 }
 Function Menu($no, $menu){
