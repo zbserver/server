@@ -39,7 +39,7 @@ define("w",m);
 define("w2",k);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
-define("inpo",["",p." [".o."ERROR".p."] ",p." [".h."INFO".p."] "]);
+define("inpo",["",p." [".o."ERROR".p."] ",p." [".h."INFO ".p."] "]);
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
