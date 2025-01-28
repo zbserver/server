@@ -16,7 +16,7 @@ SaveCokUa();
 ban();
 $r = get(web);
 $lg = Ambil($r,'<span>','</span>',2);
-if(!$lg){print " ".Pesan(2,o."ERROR").p." Cookie expried";Del();die;}
+if(!$lg){print inpo[1]."Cookie expried";Del();die;}
  
 Function CC($coin){
     $r   = get(web."/faucet/currency/$coin");
@@ -27,9 +27,9 @@ Function CC($coin){
     $post = post(web."/faucet/verify/$coin",$data);
     $hasil= Ambil($post,"html: '0.",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
     if(preg_match("/Success!'/",$post)){
-        print " ".p.Pesan(2,h."INFO".p)." ".$hasil.p."sent to faucetpay.io"." ".k.strtoupper($coin).n;   
+        print inpo[2].$hasil.p."sent to faucetpay.io"." ".k.strtoupper($coin).n;   
     }
-    if(preg_match('/The faucet does not have sufficient funds for this transaction./',$post)){print Pesan(2,o."ERROR".p)." Faucet does not have sufficient".n;goto en;}
+    if(preg_match('/The faucet does not have sufficient funds for this transaction./',$post)){print inpo[1].p."Faucet does not have sufficient".n;goto en;}
     en:
 }
 while(true){
