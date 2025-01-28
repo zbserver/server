@@ -20,7 +20,7 @@ if(!$lg){print Inpoku[1]."Cookie expried";Del();die;}
  
 Function CC($coin){
     $r   = get(web."/faucet/currency/$coin");
-    if(preg_match('/Daily claim limit for this coin reached, please comeback again tomorrow./',$r)){print Inpoku[1]."Daily claim limit ".k.strtoupper($coin);goto en;}
+    if(preg_match('/Daily claim limit for this coin reached, please comeback again tomorrow./',$r)){print Inpoku[1].p."Daily claim limit ".k.strtoupper($coin);goto en;}
     $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
     $tok = Ambil($r,'name="token" value="','">',1);
     $data ="csrf_token_name=$c_t&token=$tok&wallet=sambeljeruk%40gmail.com";
