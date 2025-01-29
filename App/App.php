@@ -18,7 +18,7 @@ define("c","\033[1;36m");
 define("p","\033[1;37m");
 define("o","\033[01;38;5;214m");
 define("mp","\033[101m\033[1;37m");
-define("hp","\033[102m\033[1;30m");
+define("hp","\033[102m\033[1;37m");
 define("kp","\033[103m\033[1;37m");
 define("bp","\033[104m\033[1;37m");
 define("up","\033[105m\033[1;37m");
@@ -39,7 +39,9 @@ define("w",m);
 define("w2",k);
 define("w3",m);
 define("cpm",["","√","+","-","!"]);
-define("inpo",["",p." [".o."ERROR".p."] ",p." [".h."INFO ".p."] "]);
+define("inpo",["",p." [".mp."ERROR".d.p."] ",p." [".h."INFO ".p."] "]);
+define("inpo1",["",p." [".mp." ERROR ".d.p."] ",p." [".pu." INFO  ".d.p."] "]);
+define("inpo2",[""," ".mp." ERROR  ".d.p," ".pm." INFO   ".d.p," ".hp." UPDATE ".d.p]);
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
@@ -79,6 +81,7 @@ Function load(){
     }
     print rr;
 }
+
 Function bps_cap(){
     print rr;
     $delay =2;
@@ -131,9 +134,9 @@ Function ban(){
     $versi=Ambil($res,"Version  : "," |--",1);
     $tele =Ambil($res,"Telegram : "," |--",1);
     echo p." ┌───────────┐┌────────────────────────────────────────┐".n;
-    echo p." │".w3."  ┌─┐┌┐┌┬┐ ".p."││ Bot App  ".panah.w3.$versi.n;
+    echo p." │".w2."  ┌─┐┌┐┌┬┐ ".p."││ Bot App  ".panah.w3.$versi.n;
     echo p." │".o ."  ┌─┘├┴┐│  ".p."││ Script   ".panah.o.host[0]." v.".version.n;
-    echo p." │".w2."  └─┘└─┘┴  ".p."││ Telegram ".panah.w2.$tele.n;
+    echo p." │".w3."  └─┘└─┘┴  ".p."││ Telegram ".panah.w2.$tele.n;
     echo p." │".p."  Zerobot  ".p."││ Status   ".panah.p."Free Not For Sale".n;
     echo p." └───────────┘└────────────────────────────────────────┘".n;
     echo line;
@@ -227,12 +230,18 @@ Function anti_bot($source,$api_url,$apikey,$delay){
 }
 Function Pesan($data=null,$isi){
     $len = 9;$lenstr = $len-strlen($isi);
-    if($data == 1 ){
-        return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
-    }elseif($data == 0){
+    if($data == 0 ){
         return w3."[".p.$isi.w3."]".p;
+    }elseif($data == 1){
+        return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
     }elseif($data == 2){
-        return p."[".p.$isi.p."]".p;
+        return inpo[$isi];
+    }elseif($data == 3){
+        return inpo1[$isi];
+    }elseif($data == 4){
+        return inpo2[$isi];
+    }elseif($data == 5){
+        return " ".mp." ".$isi." ".d." ";
     }
 }
 Function Inpoku($isi){
