@@ -12,7 +12,8 @@ Function h(){
 	$h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
     return $h;
 }
-init();
+//init();
+include("app.php");
 login();
 Function login(){
     
@@ -29,15 +30,15 @@ Function login(){
     $usn=Ambil($r,'<td class="tr-cc" colspan="2">','</',1);
     $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
     print " ".line();
-    print Pesan(2,h."INFO").p." Wallet ".k.trim($usn).n;
-    print Pesan(2,h."INFO").p." Total Earning ".k.$Earn." Dogecoin".n; 
+    print Pesan(4,2).p." Wallet login  ".k.trim($usn).n;
+    print Pesan(4,3).p." Total Earning ".p.$Earn.k." Dogecoin".n; 
     while(true){
         $r= get(web);
         $claim = Ambil($r,'<a style="color: blue;" href="','"',1);
         $r = get($claim);
         if(preg_match("/Auto Claim URL has Expired/",$r)){goto keluar; }
         $wait= Ambil($r,"Please close all active sessions and wait atleast ","before continue",1);
-        if($wait){print k." Please close all active sessions and wait.".n;
+        if($wait){print Pesan(4,2).p." Please close all active sessions and wait.".n;
             if(strpos($wait,"minutes") !== false){
                   $cektime=explode(' minutes',$wait)[0];
                   if($cektime){
@@ -56,11 +57,10 @@ Function login(){
         if($reward){
             if(preg_match("/ was sent to your account in FaucetPay.io/",$reward)){
                 $potong= str_replace(" was sent to your account in FaucetPay.io",p." sent to FaucetPay.io",$reward);
-                print Pesan(2,h."INFO").p." Claim success ".k.trim($potong).n;
-                print Pesan(2,h."INFO").p." Total Earning ".k.$Earn." Dogecoin".n;
+                print Pesan(4,2).p." Claim success ".Pesan(5,trim($potong)).n;
+                print Pesan(4,3).p." Total Earning ".k.$Earn." Dogecoin".n;
             }  
-        }else{keluar: print Pesan(2,h."INFO").p." Claim Shortlink to continue!!!".n;die();}
-        
+        }else{keluar: print Pesan(4,1).p." Claim Shortlink to continue!!!".n;die();}
         out: 
     }
 }
