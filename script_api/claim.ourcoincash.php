@@ -54,5 +54,6 @@ while(true){
         en:
         //if(Riwayat($res) > 2)break;
     }
+    if(Riwayat($res) > 2)break;
 }
     
