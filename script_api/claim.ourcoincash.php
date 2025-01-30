@@ -4,10 +4,12 @@ define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-Init();
+//Init();
+include("app.php");
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "cookie: ".file_get_contents(Data.cok);
+    $h[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";
     $h[] = "user-agent: ".file_get_contents(Data.uag);
     return $h;
 }
@@ -15,7 +17,7 @@ ban();
 SaveCokUa();
 ban();
 save("Email");
-$Wallet=file_get_contents(Data."Email");
+$Wallet=urlencode(file_get_contents(Data."Email"));
 cl();
 ban();
 $r = get(web);
@@ -40,11 +42,15 @@ while(true){
         }
         $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
         $tok = Ambil($r,'name="token" value="','">',1);
-        $data ="csrf_token_name=$c_t&token=$tok&wallet=$wallet";
+        $data ="csrf_token_name=$c_t&token=$tok&wallet=$Wallet";
+        
         $post = post(web."/faucet/verify/$coin",$data);
-        print $post;die;
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
+            print pesan(4,2).pesan(5,$hasil).p."sent to faucetpay.io"." ".k.strtoupper($coin).n;   
+        }
+        if(preg_match("/Failed!'/",$post)){
+            $hasil= Ambil($post,"html: '",'',1);
             print pesan(4,2).pesan(5,$hasil).p."sent to faucetpay.io"." ".k.strtoupper($coin).n;   
         }
         if(preg_match("/Sufficient fund/",$post)){
@@ -55,6 +61,4 @@ while(true){
         en:
         //if(Riwayat($res) > 2)break;
     }
-   // if(Riwayat($res) > 2)break;
 }
-    
