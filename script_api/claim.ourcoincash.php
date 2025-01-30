@@ -40,7 +40,7 @@ while(true){
         }
         $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
         $tok = Ambil($r,'name="token" value="','">',1);
-        $data ="csrf_token_name=$c_t&token=$tok&wallet=sambeljeruk%40gmail.com";
+        $data ="csrf_token_name=$c_t&token=$tok&wallet=$wallet";
         $post = post(web."/faucet/verify/$coin",$data);
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
