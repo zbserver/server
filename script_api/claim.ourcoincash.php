@@ -17,9 +17,10 @@ ban();
 save("Email");
 $Wallet=file_get_contents(Data."Email");
 cl();
+ban();
 $r = get(web);
 $lg = Ambil($r,'<span>','</span>',2);
-if(!$lg){print Inpoku(1)."Cookie expried";Del();die;}
+if(!$lg){print Pesan(4,1)."Cookie expried";Del();die;}
  
 Function CC($coin){
     
