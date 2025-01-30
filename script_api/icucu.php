@@ -12,8 +12,8 @@ Function h(){
 	$h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
     return $h;
 }
-//init();
-include("app.php");
+init();
+
 login();
 Function login(){
     
@@ -51,7 +51,7 @@ Function login(){
         $reward = Ambil($r,'20px;">','</div>',1);
         $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
         if(preg_match("/mbuut The faucet does not have sufficient funds for this transaction./",$reward)){
-            print Pesan(2,k."ERROR").p." The faucet does not have sufficient funds".n;
+            print Pesan(4,1).p." The faucet does not have sufficient funds".n;
             goto out;
         }
         if($reward){
@@ -61,6 +61,7 @@ Function login(){
                 print Pesan(4,3).p." Total Earning ".k.$Earn." Dogecoin".n;
             }  
         }else{keluar: print Pesan(4,1).p." Claim Shortlink to continue!!!".n;die();}
+        
         out: 
     }
 }
