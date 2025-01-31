@@ -56,7 +56,7 @@ Function login(){
         if($reward){
             if(preg_match("/dogetoshi was sent to your account in FaucetPay.io/",$reward)){
                 $potong= str_replace("dogetoshi was sent to your account in FaucetPay.io","",$reward);
-                print Pesan(4,2).p." Claim success ".Pesan(5,trim($potong)).p." sent to Faucetpay.io ".n;
+                print Pesan(4,2).p." Claim success".Pesan(5,trim($potong)).p." sent to Faucetpay.io ".n;
                 print Pesan(4,2).p." Total Earning ".k.$Earn." Dogecoin".n;
             }  
         }else{keluar: print Pesan(4,1).p." Claim Shortlink to continue!!!".n;die();}
