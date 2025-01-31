@@ -13,7 +13,6 @@ Function h(){
     return $h;
 }
 init();
-
 login();
 Function login(){
     
@@ -31,7 +30,7 @@ Function login(){
     $Earn = Ambil($r,'dogetoshi (<span class="ttrecC">','</span>',1);
     print " ".line();
     print Pesan(4,2).p." Wallet login  ".k.trim($usn).n;
-    print Pesan(4,3).p." Total Earning ".p.$Earn.k." Dogecoin".n; 
+    print Pesan(4,2).p." Total Earning ".p.$Earn.k." Dogecoin".n; 
     while(true){
         $r= get(web);
         $claim = Ambil($r,'<a style="color: blue;" href="','"',1);
@@ -55,10 +54,10 @@ Function login(){
             goto out;
         }
         if($reward){
-            if(preg_match("/ was sent to your account in FaucetPay.io/",$reward)){
-                $potong= str_replace(" was sent to your account in FaucetPay.io",p." sent to FaucetPay.io",$reward);
-                print Pesan(4,2).p." Claim success ".Pesan(5,trim($potong)).n;
-                print Pesan(4,3).p." Total Earning ".k.$Earn." Dogecoin".n;
+            if(preg_match("/dogetoshi was sent to your account in FaucetPay.io/",$reward)){
+                $potong= str_replace("dogetoshi was sent to your account in FaucetPay.io","",$reward);
+                print Pesan(4,2).p." Claim success ".Pesan(5,trim($potong)).p." sent to Faucetpay.io ".n;
+                print Pesan(4,2).p." Total Earning ".k.$Earn." Dogecoin".n;
             }  
         }else{keluar: print Pesan(4,1).p." Claim Shortlink to continue!!!".n;die();}
         
