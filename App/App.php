@@ -2,7 +2,7 @@
 /* 
  ==================================
  Author   : Zerobot |--
- Version  : 1.0.0 |--
+ Version  : 1.0.1 |--
  Telegram : t.me/official_zerobot |--
  ==================================
 */
@@ -151,7 +151,7 @@ Function init(){
         print k." Downloaded Engine v".$d.n;
         Print p." Please re run [ ".k."php bot.php".p." ]".n;die;
     }
-    $panah = array(w."●".p."●●●●",p."●".w."●".p."●●●",p."●●".w."●".p."●●",p."●●●".w."●".p."●",p."●●●●".w."●");
+    $panah = array(w."❯".p."❯❯❯❯",p."❯".w."❯".p."❯❯❯",p."❯❯".w."❯".p."❯❯",p."❯❯❯".w."❯".p."❯",p."❯❯❯❯".w."❯");
     print n.n.n.n.n.n.n.n.n.n;
     print "                      Initializing".n;
     for($i=1; $i<10; $i++){
@@ -165,14 +165,14 @@ Function init(){
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
-    $panah = array(w."●".p."●●●●",p."●".w."●".p."●●●",p."●●".w."●".p."●●",p."●●●".w."●".p."●",p."●●●●".w."●");
+    $panah = array(w."❯".p."❯❯❯❯",p."❯".w."❯".p."❯❯❯",p."❯❯".w."❯".p."❯❯",p."❯❯❯".w."❯".p."❯",p."❯❯❯❯".w."❯");
     $rand = rand(1,5);
     $timr = (time()+$tmr)+$rand;
     while(true):
         foreach($panah as $pan){
             print r;$res=$timr-time();
             if($res < 1){break;}
-            print p." ".date('H',$res).":".p.date('i',$res).":".p.date('s',$res)." | $pan"."\r";usleep(200000);
+            print p."   ".date('H',$res).":".p.date('i',$res).":".p.date('s',$res)." | $pan"."\r";usleep(200000);
         }if($res < 1){break;}
     endwhile;  
 }
