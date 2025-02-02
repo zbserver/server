@@ -134,10 +134,10 @@ Function ban(){
     $versi=Ambil($res,"Version  : "," |--",1);
     $tele =Ambil($res,"Telegram : "," |--",1);
     echo p." ┌───────────┐┌────────────────────────────────────────┐".n;
-    echo p." │".w2."  ┌─┐┌┐┌┬┐ ".p."││ Bot App  ".panah.w2.$versi.n;
-    echo p." │".o ."  ┌─┘├┴┐│  ".p."││ Script   ".panah.o.host[0]." v.".version.n;
-    echo p." │".w3."  └─┘└─┘┴  ".p."││ Telegram ".panah.w3.$tele.n;
-    echo p." │".p."  Zerobot  ".p."││ Status   ".panah.p."Free Not For Sale".n;
+    echo p." │".w2."  ┌─┐┌┐┌┬┐ ".p."│   Bot App  ".panah.w2.$versi.n;
+    echo p." │".o ."  ┌─┘├┴┐│  ".p."│   Script   ".panah.o.host[0]." v.".version.n;
+    echo p." │".w3."  └─┘└─┘┴  ".p."│   Telegram ".panah.w3.$tele.n;
+    echo p." │".p."  Zerobot  ".p."│   Status   ".panah.p."Free Not For Sale".n;
     echo p." └───────────┘└────────────────────────────────────────┘".n;
     echo line;
 }
@@ -152,12 +152,12 @@ Function init(){
         Print p." Please re run [ ".k."php bot.php".p." ]".n;die;
     }
     $panah = array(w."❯".p."❯❯❯❯",p."❯".w."❯".p."❯❯❯",p."❯❯".w."❯".p."❯❯",p."❯❯❯".w."❯".p."❯",p."❯❯❯❯".w."❯");
-    print n.n.n.n.n.n.n.n.n.n;
-    print "                      Initializing".n;
+    print n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n;
+    print "                      Initializing".n.n.n.n.n;
     for($i=1; $i<10; $i++){
         foreach($panah as $pan){
             usleep(200000);
-            print p."                        ".$pan.p.r;
+            print p."                           ".$pan.p.r;
         }
     }
     cl();
