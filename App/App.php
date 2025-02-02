@@ -41,7 +41,7 @@ define("w3",m);
 define("cpm",["","√","+","-","!"]);
 define("inpo",["",p." [".mp."ERROR".d.p."] ",p." [".h."INFO ".p."] "]);
 define("inpo1",["",p." [".mp." ERROR ".d.p."] ",p." [".pu." INFO  ".d.p."] "]);
-define("inpo2",[""," ".mp." ERROR  ".d.p," ".pm." INFO   ".d.p," ".hp." UPDATE ".d.p]);
+define("inpo2",[""," ".k."❯ ".d.p," ".k."❯ ".d.p," ".k."❯ ".d.p]);
 define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
