@@ -53,7 +53,7 @@ Faucet:
 while(true){
     $pageurl = web;
     $r = get($pageurl);
-    if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 10 more Shortlinks today".n;die();}
+    if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 1 more Shortlinks today".n;die();}
     $time= Ambil($r,'id="claimTime">','</span>',1);
     if($time){
         if(strpos($time,"hour") !== false){
