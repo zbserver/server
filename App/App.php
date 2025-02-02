@@ -153,11 +153,11 @@ Function init(){
     }
     $panah = array(w."❯".p."❯❯❯❯",p."❯".w."❯".p."❯❯❯",p."❯❯".w."❯".p."❯❯",p."❯❯❯".w."❯".p."❯",p."❯❯❯❯".w."❯");
     print n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n;
-    print "                      Initializing".n.n.n.n.n;
+    print "                       Initializing".n.n.n.n.n;
     for($i=1; $i<10; $i++){
         foreach($panah as $pan){
             usleep(200000);
-            print p."                           ".$pan.p.r;
+            print p."                         ".$pan.p.r;
         }
     }
     cl();
