@@ -19,11 +19,14 @@ ban();
 $Wallet=urlencode(file_get_contents(Data."Email"));
 cl();
 ban();
-$awal = get(web);
-$lg = Ambil($awal,'<span>','</span>',2);
-if(!$lg){print Pesan(4,1)."  Cookie expried";Del();die;}
+
+
 while(true){
-    $c = explode('/faucet/currency/',$awal);
+    $r = get(web);
+    if(!preg_match('/Logout/',$r)){
+        print Pesan(4,1)."  Cookie expried".n;Del();die;
+    }
+    $c = explode('/faucet/currency/',$r);
     foreach($c as $a => $coins){
         if($a == 0)continue;
         $coin = explode('"',$coins)[0];
@@ -34,7 +37,7 @@ while(true){
         $r   = get(web."/faucet/currency/$coin");
         $tim = Ambil($r,'let timer = ',',',2);
         if($tim){
-            tim($tim);
+            //tim($tim);
         }
         
         if($res){if($res[$coin] > 2)continue;}
@@ -61,3 +64,4 @@ while(true){
         //if(Riwayat($res) > 2)break;
     }
 }
+    
