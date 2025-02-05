@@ -32,7 +32,7 @@ while(true){
         }*/
 
         $r   = get(web."/faucet/currency/$coin");
-        $tim = Ambil($r,'let timer = ',',',1);
+        $tim = Ambil($r,'let timer = ',',',2);
         if($tim){
             tim($tim);
         }
@@ -61,4 +61,3 @@ while(true){
         //if(Riwayat($res) > 2)break;
     }
 }
-    
