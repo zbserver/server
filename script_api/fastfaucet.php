@@ -37,7 +37,7 @@ while(true){
         $r   = get(web."/faucet/currency/$coin");
         $tim = Ambil($r,'let timer = ',',',2);
         if($tim){
-            //tim($tim);
+            tim($tim);
         }
         
         if($res){if($res[$coin] > 2)continue;}
