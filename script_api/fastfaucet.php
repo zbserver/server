@@ -15,22 +15,21 @@ Function h(){
 ban();
 SaveCokUa();
 ban();
-save("Email");
+//save("Email");
 $Wallet=urlencode(file_get_contents(Data."Email"));
 cl();
 ban();
-$r = get(web);
-$lg = Ambil($r,'<span>','</span>',2);
+$awal = get(web);
+$lg = Ambil($awal,'<span>','</span>',2);
 if(!$lg){print Pesan(4,1)."  Cookie expried";Del();die;}
 while(true){
-    $r = get(web);
-    $c = explode('/faucet/currency/',$r);
+    $c = explode('/faucet/currency/',$awal);
     foreach($c as $a => $coins){
         if($a == 0)continue;
         $coin = explode('"',$coins)[0];
-        if(preg_match("/firewall/",$r)){
+        /*if(preg_match("/firewall/",$r)){
             print Pesan(4,1).p."  Firewall! Open browser".n;
-        }
+        }*/
 
         $r   = get(web."/faucet/currency/$coin");
         $tim = Ambil($r,'let timer = ',',',1);
@@ -62,3 +61,4 @@ while(true){
         //if(Riwayat($res) > 2)break;
     }
 }
+    
