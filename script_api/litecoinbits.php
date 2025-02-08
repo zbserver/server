@@ -5,7 +5,7 @@ define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
 init();
-//include("app.php");
+
 ban();
 Awal:
 SaveCokUa();
@@ -19,7 +19,7 @@ Function h(){
     return $h;
 }
 FUnction balance(){
-    $r = get(web."?page=shortlinks");
+    $r = get(web."?page=ptc");
     $coin = Ambil($r,'<div class="text-warning"><b>','</b>',1);
     $bal = Ambil($r,'<div class="text-primary"><b>','</b>',1);
     return ["b"=>$bal,"c"=>$coin];
