@@ -1,6 +1,6 @@
 <?php
 define('host',['Earnsatoshihub','earnsatoshihub.xyz','']);
-define('version','1.0');
+define('version','1.xxx');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -76,7 +76,8 @@ while(true){
     $cap = Captcha($r,$api_url,$apikey, $sitekey, $pageurl,8);
     if(!$cap){continue;}
     $token = Ambil($r,"var token = '","';",1);
-    $data  = "a=getFaucet&token=$token&captcha=1&challenge=false&response=$cap";
+    //$data  = "a=getFaucet&token=$token&captcha=1&challenge=false&response=$cap";
+    $data  = "a=getFaucet&cf-turnstile-response="$cap"&token=$token;
     $r = post(web.'/system/ajax.php',$data);
     $r = json_decode($r,1);
     $sukses = $r["message"];
