@@ -77,7 +77,7 @@ while(true){
     if(!$cap){continue;}
     $token = Ambil($r,"var token = '","';",1);
     //$data  = "a=getFaucet&token=$token&captcha=1&challenge=false&response=$cap";
-    $data  = "a=getFaucet&cf-turnstile-response="$cap"&token=$token;
+    $data  = "a=getFaucet&cf-turnstile-response=$cap&token=$token";
     $r = post(web.'/system/ajax.php',$data);
     $r = json_decode($r,1);
     $sukses = $r["message"];
