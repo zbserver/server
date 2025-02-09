@@ -29,6 +29,7 @@ Function success($reward,$nub){
     print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward." Bits".n;
     print " ".w3."[".p.cpm[2].w3."]".p." Balance     ".panah.p.$b.k." / ".p.$c.n;
     print " ".line();
+
 }
 Function Login(){
     $r = balance(); $b = $r["b"]; $c= $r["c"];$l=$r["l"];
@@ -40,7 +41,7 @@ Function Login(){
     Faucet:
     while(true){
         $r = get(web);
-        if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 10 more Shortlinks today".n;die();}
+        if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 1 more Shortlinks today".n;die();}
         $time= Ambil($r,'id="claimTime">','</span>',1);
         if($time){
             if(strpos($time,"hour") !== false){
