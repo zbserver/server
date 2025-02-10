@@ -1,6 +1,6 @@
 <?php
 define('host',['Earnsatoshihub','earnsatoshihub.xyz','']);
-define('version','1.xxx');
+define('version','1.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -34,8 +34,18 @@ Function h(){
     $h[] = "user-agent: ".file_get_contents(Data.uag);
     return $h;
 }
-
-
+Function balance(){
+    $r    = get(web."?page=shortlinks");
+    $log  = Ambil($r,'<font class="text-success">','</font>',1);
+    $coin = Ambil($r,'<div class="text-warning"><b>','</b>',1);
+    $bal  = Ambil($r,'<div class="text-primary"><b>','</b>',1);
+    return ["b"=>$bal,"c"=>$coin,"l"=>$log];
+}
+Function success($reward,$nub){
+    $r=balance(); $b =$r["b"]; $c=$r["c"];
+    print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward." Bits".n;
+    print " ".w3."[".p.cpm[2].w3."]".p." Balance     ".panah.p.$b.k." / ".p.$c.n;
+}
 $apikey=file_get_contents(Data."/Apikey");
 $r = get(web);
 $lg = Ambil($r,'<font class="text-success">','</font>',1);
@@ -52,7 +62,7 @@ Faucet:
 while(true){
     $pageurl = web;
     $r = get($pageurl);
-    if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 1 more Shortlinks today".n;die();}
+    if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 10 more Shortlinks today".n;die();}
     $time= Ambil($r,'id="claimTime">','</span>',1);
     if($time){
         if(strpos($time,"hour") !== false){
@@ -66,7 +76,7 @@ while(true){
         tim($cektime);
         }
     }
-    $sitekey=Ambil($r,'data-sitekey="','">',1);
+    $sitekey=Ambil($r,'data-sitekey="','"',1);
     if(!$sitekey){
         print " ".w3."[".p.cpm[4].w3."]".w2." Error sitekey!";
         sleep(2);
@@ -76,22 +86,14 @@ while(true){
     $cap = Captcha($r,$api_url,$apikey, $sitekey, $pageurl,8);
     if(!$cap){continue;}
     $token = Ambil($r,"var token = '","';",1);
-    //$data  = "a=getFaucet&token=$token&captcha=1&challenge=false&response=$cap";
-    $data  = "a=getFaucet&cf-turnstile-response=$cap&token=$token";
-    $r = post(web.'/system/ajax.php',$data);
-    $r = json_decode($r,1);
-    $sukses = $r["message"];
-    $status = $r["status"];
-    if($status == 200){
-        $t = get(web);
-        $b = Ambil($t,'Account Balance <div class="text-primary"><b>','</b>',1);
-        $coin= Ambil($t,'Current Bits Value <div class="text-warning"><b>','</b>',1);
-        $nub= Ambil($sukses,' Congratulations, your lucky number was ',' and you won ',1);
-        $reward= Ambil($sukses,'and you won ','!',1);
-        print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward.n;
-        print " ".w3."[".p.cpm[2].w3."]".p." Balance     ".panah.p.$b.k." / ".p.$coin.n;
+    $data  = "a=getFaucet&token=$token&captcha=turnstile&response=$cap";
+    $r = json_decode(post(web.'/system/ajax.php',$data),1);
+    
+    if($r['status'] == 200){
+        success($r["reward"], $r["number"]); 
         print " ".w3."[".p.cpm[3].w3."]".p." Apikey      ".panah.p.Api_Bal($api_url).n;
-        print " ".line();
-        
-    }
+        print " ".line();   
+    }else{
+        echo k.strip_tags($r['message']).r;
+    }          
 }
