@@ -41,7 +41,8 @@ Function Login(){
     Faucet:
     while(true){
         $r = get(web);
-        if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 1 more Shortlinks today".n;die();}
+        $lock=Ambil($r,"You must visit "," more Shortlinks today",1);
+        if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit ".k.$lock.p." more Shortlinks today".n;die();}
         $time= Ambil($r,'id="claimTime">','</span>',1);
         if($time){
             if(strpos($time,"hour") !== false){
