@@ -2,7 +2,7 @@
 /* 
  ==================================
  Author   : Zerobot |--
- Version  : 1.0.1 |--
+ Version  : 1.0.2 |--
  Telegram : t.me/official_zerobot |--
  ==================================
 */
@@ -105,7 +105,7 @@ Function Del(){
 }
 Function EngCek(){
     print n.n.n.n.n.n.n.n.n.n;
-    print hm."                    Checking Update ...";sleep(2);print r;
+    print hm." Checking Update ...";sleep(2);print r;
     if(!is_dir("App")){
         system("mkdir App");
     }
@@ -116,9 +116,9 @@ Function EngCek(){
     if($Ver_server > $Ver_lokal){
         unlink(App);
         file_put_contents(App,$Server);
-        Print p."              Updated Engine ".p."[".k."v".$Ver_server.p."] Done".n.n;
-        Print p."               Please re run [".k."php bot.php".p."]".n;die;
-    }else{print p."                   Latest Version :".$Ver_lokal;sleep(2);print r;}
+        Print p." Updated Engine ".p."[".k."v".$Ver_server.p."] Done".n.n;
+        Print p." Please re run [".k."php bot.php".p."]".n;die;
+    }else{print p." Latest Version :".$Ver_lokal;sleep(2);print r;}
 }
 Function Api_Bal($api_url){
     $apikey = file_get_contents("Data/Apikey");
@@ -135,9 +135,9 @@ Function ban(){
     $tele =Ambil($res,"Telegram : "," |--",1);
     echo p." ┌───────────┐┌────────────────────────────────────────┐".n;
     echo p." │".w2."  ┌─┐┌┐┌┬┐ ".p."│   Bot App  ".panah.w2.$versi.n;
-    echo p." │".o ."  ┌─┘├┴┐│  ".p."│   Script   ".panah.o.host[0]." v.".version.n;
+    echo p." │".o ."  ┌─┘├┴┐o  ".p."│   Script   ".panah.o.host[0]." v.".version.n;
     echo p." │".w3."  └─┘└─┘┴  ".p."│   Telegram ".panah.w3.$tele.n;
-    echo p." │".p."  Zerobot  ".p."│   Status   ".panah.p."Free Not For Sale".n;
+    echo p." │".p ."  Zerobot  ".p."│   Status   ".panah.p."Free Not For Sale".n;
     echo p." └───────────┘└────────────────────────────────────────┘".n;
     echo line;
 }
@@ -150,15 +150,6 @@ Function init(){
         $d = Ambil($x,'eng","','");',1);
         print k." Downloaded Engine v".$d.n;
         Print p." Please re run [ ".k."php bot.php".p." ]".n;die;
-    }
-    $panah = array(w."❯".p."❯❯❯❯",p."❯".w."❯".p."❯❯❯",p."❯❯".w."❯".p."❯❯",p."❯❯❯".w."❯".p."❯",p."❯❯❯❯".w."❯");
-    print n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n.n;
-    print "                       Initializing".n.n.n.n.n;
-    for($i=1; $i<10; $i++){
-        foreach($panah as $pan){
-            usleep(200000);
-            print p."                         ".$pan.p.r;
-        }
     }
     cl();
     EngCek();
@@ -189,8 +180,8 @@ Function RecaptchaV3($anchor){
     }
 }
 Function Captcha($source,$api_url,$apikey, $sitekey, $pageurl,$delay){
-    if(preg_match("/h-captcha/",$source)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
-    if(preg_match("/g-recaptcha/",$source)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+    if(preg_match("/h-captcha/"   ,$source)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+    if(preg_match("/g-recaptcha/" ,$source)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     if(preg_match("/cf-turnstile/",$source)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     $status = $r["status"];
         if($status == 0){ApiError;return 0;}
