@@ -1,6 +1,6 @@
 <?php
 define('host',['Rushbitcoin','Rushbitcoin.com','']);
-define('version','1.0');
+define('version','1.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -42,7 +42,7 @@ Function Login(){
     while(true){
         $r = get(web);
         $lock=Ambil($r,"You must visit "," more Shortlinks today",1);
-        if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit ".k.$lock.p." more Shortlinks today".n;die();}
+        if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked".k." | ".p."You must visit ".k.$lock.p." more Shortlinks today".n;die();}
         $time= Ambil($r,'id="claimTime">','</span>',1);
         if($time){
             if(strpos($time,"hour") !== false){
