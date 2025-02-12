@@ -62,9 +62,9 @@ print " ".w3."[".p.cpm[1].w3."]".p." Login   ".panah.p.$l.n.
       " ".p.line();
 Faucet:
 while(true){
-    $r = get(web);
-    $lock=Ambil($r,"You must visit "," more Shortlinks today",1);
-    if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked".k." | ".p."You must visit ".k.$lock.p." more Shortlinks today".n;die();}
+    $pageurl = web;
+    $r = get($pageurl);
+    if(preg_match('/Faucet Locked!/',$r)){print p." Faucet locked. ".p."You must visit 10 more Shortlinks today".n;die();}
     $time= Ambil($r,'id="claimTime">','</span>',1);
     if($time){
         if(strpos($time,"hour") !== false){
@@ -78,12 +78,24 @@ while(true){
         tim($cektime);
         }
     }
-    $token = Ambil($r,"var token = '","';",1);
-    $data  = "a=getFaucet&token=$token&challenge=false&response=false";
-    $r = json_decode(post(web.'/system/ajax.php',$data),1);
-    if($r['status'] == 200){
-        success($r["reward"], $r["number"]);    
-    }else{
-        echo k.strip_tags($r['message']).r;
+    $sitekey=Ambil($r,'data-sitekey="','"',1);
+    if(!$sitekey){
+        print " ".w3."[".p.cpm[4].w3."]".w2." Error sitekey!";
+        sleep(2);
+        print "\r                      \r";
+        continue;   
     }
+    $cap = Captcha($r,$api_url,$apikey, $sitekey, $pageurl,8);
+    if(!$cap){continue;}
+    $token = Ambil($r,"var token = '","';",1);
+    $data  = "a=getFaucet&token=$token&captcha=1&challenge=false&response=$cap";
+    $r = json_decode(post(web.'/system/ajax.php',$data),1);
+    
+    if($r['status'] == 200){
+        success($r["reward"], $r["number"]); 
+        print " ".w3."[".p.cpm[3].w3."]".p." Apikey      ".panah.p.Api_Bal($api_url).n;
+        print " ".line();   
+    }else{
+        echo " ".k.strip_tags($r['message']).r;
+    }          
 }
