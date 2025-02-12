@@ -4,7 +4,7 @@ define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-init();
+include("app.php");//init();
 apikey:
 ban();
 /*Print " ".Pesan(0, "Menu apikey").n;
@@ -48,8 +48,10 @@ Function Game($game,$id){
         $data ="score=5004&csrf=$csrf";
         $r = post(web."/games/verify?id=$id",$data);
         $oke = Ambil($r,'earned ','"',1);
+
         if($oke){
             $pt = str_replace("you have ","",$oke);
+            $pt = str_replace("remaining","",$pt);
             print " ".w3."[".p.cpm[1].w3."]".p.$game.panah.p.$pt.n; sleep(5);
         }
         if (preg_match("/Limit/", $r)){
@@ -77,7 +79,31 @@ print " ".w3."[".p.cpm[1].w3."]".p." Login   ".panah.p.$l.n.
       " ".w3."[".p.cpm[1].w3."]".p." Balance ".panah.p.$b.n.
       " ".w3."[".p.cpm[1].w3."]".p." Energy  ".panah.p.$e.n.
       " ".p.line();
+
 Game("2048-lite","1");
 Game("pacman-lite","2");
 Game("hextris-lite","3");
 Game("taptaptap","4");
+Auto();
+Function Auto(){
+    Auto:
+    $r =  balance(); $e=$r["e"];
+    if($e<= null){
+        print " ".w3."[".p.cpm[4].w3."]".p." Energy not found !!!".n;
+        die;
+    }
+    $r = get(web."/auto");
+    $tim = Ambil($r,'let timer = ',',',1);
+    tim($tim);
+    $tok = Ambil($r,'name="token" value="','">',1);
+    $data = "token=$tok";
+    $r = post(web."/auto/verify",$data);
+    $oke  = Ambil($r,'html: `','has been added to your balance`',1);
+    if($oke){
+        $r = balance(); $b=$r["b"];$e=$r["e"];
+        print " ".w3."[".p.cpm[2].w3."]".p." Balance ".panah.p.$b.n.
+              " ".w3."[".p.cpm[3].w3."]".p." Energy  ".panah.p.$e.n.
+              " ".line(); goto Auto;
+    }
+    
+}
