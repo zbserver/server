@@ -53,6 +53,7 @@ if(preg_match("/logout/",$r)){
 }else{
     print p." Error ".p."|".k." Cookie Experied! ".n;sleep(2);Del();die;
 }
+$apikey=file_get_contents(Data."/Apikey");
 $r=null;
 $r = balance(); $b=$r["b"]; $c=$r["c"]; $l=$r["l"];
 
