@@ -1,5 +1,9 @@
 <?php
-define('host',['SwapID','swapid.pro','']);
+include("app.php");
+Print " ".p."Website Bangkrut".n.
+      " ".p."Nantikan script selanjutnya".n.
+      " ".p."Thank You".n;
+/*define('host',['SwapID','swapid.pro','']);
 define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
@@ -87,3 +91,4 @@ Game("pacman-lite","2");
 Game("hextris-lite","3");
 Game("taptaptap","4");
 Auto();
+*/
