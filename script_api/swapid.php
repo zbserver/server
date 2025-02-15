@@ -1,4 +1,5 @@
 <?php
+ban();
 Print " ".p."Website Bangkrut".n.
       " ".p."Nantikan script selanjutnya".n.
       " ".k."Thank You".n;
