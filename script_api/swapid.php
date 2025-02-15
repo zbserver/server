@@ -1,8 +1,7 @@
 <?php
-include("app.php");
 Print " ".p."Website Bangkrut".n.
       " ".p."Nantikan script selanjutnya".n.
-      " ".p."Thank You".n;
+      " ".k."Thank You".n;
 /*define('host',['SwapID','swapid.pro','']);
 define('version','1.0');
 define('cok','cookie.'.host[0]);
