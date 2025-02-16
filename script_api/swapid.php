@@ -1,4 +1,5 @@
 <?php
+init();
 Print " ".p."Website Bangkrut".n.
       " ".p."Nantikan script selanjutnya".n.
       " ".p."Thank You".n;
