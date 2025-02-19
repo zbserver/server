@@ -2,7 +2,7 @@
 /* 
  ==================================
  Author   : Zerobot |--
- Version  : 1.0.2 |--
+ Version  : 1.0.3 |--
  Telegram : t.me/official_zerobot |--
  ==================================
 */
@@ -81,7 +81,6 @@ Function load(){
     }
     print rr;
 }
-
 Function bps_cap(){
     print rr;
     $delay =2;
@@ -202,7 +201,7 @@ Function anti_bot($source,$api_url,$apikey,$delay){
 	foreach($src as $x => $sour){
 		if($x == 0)continue;
 		$no = explode('\"',$sour)[0];
-		$img = Ambil($sour,'<img src=\"','\"',1);
+		$img = explode('\"',explode('<img src=\"',$sour)[1])[0];
 		$antiBot[$no] = $img;
 	}
 	$ua = "Content-type: application/x-www-form-urlencoded";
