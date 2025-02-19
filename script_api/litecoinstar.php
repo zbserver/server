@@ -58,7 +58,8 @@ while(true){
     $r=get(web."/faucet");
     $locked=Ambil($r,'You must visit ',' to be able to Roll',1);
     if(preg_match('/Faucet Locked!/',$r)){print hm." Faucet Locked! ".p."You must visit ".p.$locked.n;die();}
-    $time= Ambil($r,'id="claimTime">','</span>',1);
+    $time= Ambil($r,'<span id="countdown">','</span>',1);
+    if($time){tim($time);}
     $sitekey= Ambil($r,'data-sitekey="','">',1);
     if(!$sitekey){
         print " ".w3."[".p.cpm[4].w3."]".p." Sitekey Error ";sleep(5);print r;
@@ -70,15 +71,11 @@ while(true){
     $data  = "g-recaptcha-response=$cap&h-captcha-response=$cap&csrf_token_name=$token";
     $r = post(web."/faucet",$data);
     $suk = Ambil($r,'<div class="alert alert-success">','</div>',1);
-    
     if($suk){
-        $r = balance(); $b=$r["b"];   
+        $r = balance(); $b=$r["b"];
         print " ".w3."[".p.cpm[1].w3."]".p." Reward   ".panah.p.trim($suk).n;
         print " ".w3."[".p.cpm[2].w3."]".p." Balance  ".panah.p.$b." USD".n;
         print " ".w3."[".p.cpm[3].w3."]".p." Apikey   ".panah.p.Api_Bal($api_url).n;
-        print " ".line();    
-        tim(10);
-    }else{
-        
+        print " ".line();
     }
 }
