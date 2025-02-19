@@ -48,6 +48,8 @@ if(preg_match("/logout/",$r)){
     print " ".w3."[".p.cpm[4].w3."]".k." Cookie Experied! ".n;sleep(2);Del();die;
 }
 $r=null;
+print " ".p.host[0].panah.p."Faucet".n;
+print " ".line;
 $r = balance(); $b=$r["b"]; $e=$r["e"]; $u=$r["u"];
 print " ".w3."[".p.cpm[1].w3."]".p." Login   ".panah.p.$u.n.
       " ".w3."[".p.cpm[1].w3."]".p." Balance ".panah.p.$b." USD".n.
@@ -59,7 +61,7 @@ while(true){
     $locked=Ambil($r,'You must visit ',' to be able to Roll',1);
     if(preg_match('/Faucet Locked!/',$r)){print hm." Faucet Locked! ".p."You must visit ".p.$locked.n;die();}
     $time= Ambil($r,'<span id="countdown">','</span>',1);
-    if($time){tim($time);}
+    if($time){tim($time);goto faucet;}
     $sitekey= Ambil($r,'data-sitekey="','">',1);
     if(!$sitekey){
         print " ".w3."[".p.cpm[4].w3."]".p." Sitekey Error ";sleep(5);print r;
@@ -77,5 +79,7 @@ while(true){
         print " ".w3."[".p.cpm[2].w3."]".p." Balance  ".panah.p.$b." USD".n;
         print " ".w3."[".p.cpm[3].w3."]".p." Apikey   ".panah.p.Api_Bal($api_url).n;
         print " ".line();
+    }else{
+        
     }
 }
