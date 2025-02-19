@@ -66,7 +66,8 @@ while(true){
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
             $left=Ambil($r,'<p class="lh-1 mb-1 fw-bold">','</p>',5);
-            print " ".w3."[".p.cpm[1].w3."] ".o.$hasil.p."sent to FP".p." | left ".o.$left.p."|".k.strtoupper($coin).p."|".n;   
+            print " ".w3."[".p.cpm[1].w3."] ".o.$hasil.p."sent to FP".p." | left ".o.$left.p."|".k.strtoupper($coin).p."|".n;
+            tim(10);  
         }
         if(preg_match("/Failed!'/",$post)){
             $hasil= Ambil($post,"html: '",'',1);
@@ -81,4 +82,3 @@ while(true){
         //if(Riwayat($r) > 2)break;
     }
 }
-    
