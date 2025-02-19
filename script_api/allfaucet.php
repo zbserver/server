@@ -56,7 +56,7 @@ while(true){
             $res = Riwayat([$coin=>3],$res);
             print " ".w3."[".p.cpm[1].w3."] ".p."  Daily claim limit ".k.strtoupper($coin).p.n;continue;
         }
-        $atb = anti_bot($r,$api_url,$apikey,5);
+        $atb = anti_bot($r,$api_url,$apikey,8);
         if(!$atb)continue;
         $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
         $tok = Ambil($r,'name="token" value="','">',1);
@@ -78,7 +78,7 @@ while(true){
             $res = Riwayat([$coin=>1],$res);
         }
         en:
-        //if(Riwayat($res) > 2)break;
+        //if(Riwayat($r) > 2)break;
     }
 }
     
