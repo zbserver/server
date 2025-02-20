@@ -27,7 +27,7 @@ Function balance(){
 Function success($reward,$nub){
     $r=balance(); $b =$r["b"]; $c=$r["c"];$s=$r["s"];
     print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward." Tokens".n;
-    print " ".w3."[".p.cpm[1].w3."]".p." Faucet Token".panah.p.$c.n;
+    print " ".w3."[".p.cpm[2].w3."]".p." Faucet Token".panah.p.$c.n;
     //print " ".w3."[".p.cpm[2].w3."]".p." Balance     ".panah.p.$b.p." / ".p.$s.n;
 }
 Awal:
