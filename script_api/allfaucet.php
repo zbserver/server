@@ -4,7 +4,7 @@ define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-init;
+init();
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "cookie: ".file_get_contents(Data.cok);
