@@ -4,7 +4,7 @@ define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-init();
+init;
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "cookie: ".file_get_contents(Data.cok);
@@ -40,7 +40,7 @@ $lg = Ambil($r,'<h2>','</h2>',1);
 if(!$lg){print Pesan(4,1)."  Cookie expried";Del();die;}
 print " ".w3."[".p.cpm[4].w3."]".p." Apikey ".panah.p.Api_Bal($api_url).n;
 print " ".line();
-
+Faucet:
 while(true){
     $r =get(web."/dashboard");
     $c = explode('/faucet/currency/',$r);
@@ -51,6 +51,7 @@ while(true){
             print Pesan(4,1).p."  Firewall! Open browser".n;
         }
         $r   = get(web."/faucet/currency/$coin");
+        if(preg_match('Invalid Anti-Bo/',$r)){goto Faucet; }
         if($res){if($res[$coin] > 2)continue;}
         if(preg_match('/Daily claim limit/',$r)){
             $res = Riwayat([$coin=>3],$res);
@@ -70,8 +71,7 @@ while(true){
             tim(10);  
         }
         if(preg_match("/Failed!'/",$post)){
-            $hasil= Ambil($post,"html: '",'',1);
-            print " ".w3."[".p.cpm[4].w3."] ".p."Failed".k.strtoupper($coin).n;continue;  
+            print " ".w3."[".p.cpm[4].w3."] ".p."Failed |".k.strtoupper($coin).p."|".n;continue;  
         }
         if(preg_match("/Sufficient fund/",$post)){
             $res = Riwayat([$coin=>3],$res);
@@ -79,8 +79,7 @@ while(true){
             $res = Riwayat([$coin=>1],$res);
         }
         en:
-        //if(!$res){print " ".w3."[".p.cpm[4].w3."] ".p."All coins have been claimed".n;die;}
-        //if(Riwayat($res) > 2)break;
+        if(!$c){print " ".w3."[".p.cpm[4].w3."] ".p."All coins have been claimed".n;die;}
+        if(Riwayat($c) > 2)break;
     }
 }
-    
