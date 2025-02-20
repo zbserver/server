@@ -79,8 +79,8 @@ while(true){
             $res = Riwayat([$coin=>1],$res);
         }
         en:
-        if(!$res){print " ".w3."[".p.cpm[4].w3."] ".p."All coins have been claimed".n;die;}
-        if(Riwayat($res) > 2)break;
+        //if(!$res){print " ".w3."[".p.cpm[4].w3."] ".p."All coins have been claimed".n;die;}
+        //if(Riwayat($res) > 2)break;
     }
 }
     
