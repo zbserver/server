@@ -4,7 +4,7 @@ define('version','1.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-Init();
+init();
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "cookie: ".file_get_contents(Data.cok);
@@ -54,7 +54,7 @@ while(true){
         if($res){if($res[$coin] > 2)continue;}
         if(preg_match('/Daily claim limit/',$r)){
             $res = Riwayat([$coin=>3],$res);
-            print " ".w3."[".p.cpm[1].w3."] ".p."  Daily claim limit ".k.strtoupper($coin).p.n;continue;
+            print " ".w3."[".p.cpm[4].w3."] ".p."Daily claim limit | ".k.strtoupper($coin).p."|".n;continue;
         }
         $atb = anti_bot($r,$api_url,$apikey,8);
         if(!$atb)continue;
@@ -79,6 +79,8 @@ while(true){
             $res = Riwayat([$coin=>1],$res);
         }
         en:
-        //if(Riwayat($r) > 2)break;
+        if(!$res){print " ".w3."[".p.cpm[4].w3."] ".p."All coins have been claimed".n;die;}
+        if(Riwayat($res) > 2)break;
     }
 }
+    
