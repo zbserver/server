@@ -52,13 +52,10 @@ print " ".w3."[".p.cpm[2].w3."] ".p."Balance".panah.p.$b.n;
 print " ".w3."[".p.cpm[2].w3."] ".p."Energy ".panah.p.$e.n;
 print " ".w3."[".p.cpm[2].w3."] ".p."Apikey ".panah.p.Api_Bal($api_url).n;
 print " ".line();
+
 Faucet:
 while(true){
     $r = get(web."/faucet");
-    $lf= Ambil($r,'<h4 class="lh-1 mb-1">','/300</h4>',4);
-    if($lf <= 0){
-        print " ".w3."[".p.cpm[4].w3."] ".p."Faucet Not Found";die;
-    }
     $atb = anti_bot($r,$api_url,$apikey,8);
     if(!$atb)continue;
     $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
@@ -71,7 +68,7 @@ while(true){
             $hasil = Ambil($post,"text: '","has been added to your balance",1);
             print " ".w3."[".p.cpm[1].w3."] ".p."Reward ".panah.p.$hasil.n;
             print " ".w3."[".p.cpm[2].w3."] ".p."Balance".panah.p.$b.n;
-            print " ".w3."[".p.cpm[3].w3."] ".p."Left   ".panah.p.$lf.n;
+            //print " ".w3."[".p.cpm[3].w3."] ".p."Left   ".panah.p.$lf.n;
             print " ".w3."[".p.cpm[3].w3."] ".p."Apikey ".panah.p.Api_Bal($api_url).n;
             print " ".p.line();
             tim(10);
