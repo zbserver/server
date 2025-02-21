@@ -56,6 +56,11 @@ print " ".line();
 Faucet:
 while(true){
     $r = get(web."/faucet");
+    $lf= Ambil($r,'<h4 class="lh-1 mb-1">','</h4>',1);
+    if($lf < 0){
+        print " ".w3."[".p.cpm[4].w3."] ".p."Faucet Not Found";die;
+    }
+
     $time = Ambil($r,"let timer = ",";",1);
     if($time){
         tim($time);
