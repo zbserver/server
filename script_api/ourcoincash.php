@@ -16,7 +16,7 @@ Function balance(){
     $r = get(web."/dashboard");
     $b = Ambil($r,'<p class="acc-amount"><i class="fas fa-coins"></i> ','</p>',1);
     $e = Ambil($r,'<p class="text-warning"><i class="fas fa-bolt"></i> ','</p>',1);
-    return ["b"=>$b,"e"=>$e];
+    return ["b"=>$b.h.' Coins',"e"=>$e];
 }
 apikey:
 ban();
@@ -45,25 +45,19 @@ ban();
 $r = get(web."/dashboard");
 
 $lg = Ambil($r,'<span>','</span>',2);
-if(!$lg){print " ".w3."[".p.cpm[4].w3."] ".p."Cookie Experied.".n;die;}
+if(!$lg){print " ".w3."[".p.cpm[4].w3."] ".p."Cookie Experied.".n;Del();die;}
 else{print " ".p."Login success.";sleep(2);print r;}
 $r = balance(); $b=$r["b"];$e=$r["e"];
 print " ".w3."[".p.cpm[2].w3."] ".p."Balance".panah.p.$b.n;
 print " ".w3."[".p.cpm[2].w3."] ".p."Energy ".panah.p.$e.n;
 print " ".w3."[".p.cpm[2].w3."] ".p."Apikey ".panah.p.Api_Bal($api_url).n;
 print " ".line();
-
 Faucet:
 while(true){
     $r = get(web."/faucet");
-    $lf= Ambil($r,'<h4 class="lh-1 mb-1">','</h4>',1);
-    if($lf < 0){
+    $lf= Ambil($r,'<h4 class="lh-1 mb-1">','/300</h4>',4);
+    if($lf <= 0){
         print " ".w3."[".p.cpm[4].w3."] ".p."Faucet Not Found";die;
-    }
-
-    $time = Ambil($r,"let timer = ",";",1);
-    if($time){
-        tim($time);
     }
     $atb = anti_bot($r,$api_url,$apikey,8);
     if(!$atb)continue;
@@ -77,8 +71,10 @@ while(true){
             $hasil = Ambil($post,"text: '","has been added to your balance",1);
             print " ".w3."[".p.cpm[1].w3."] ".p."Reward ".panah.p.$hasil.n;
             print " ".w3."[".p.cpm[2].w3."] ".p."Balance".panah.p.$b.n;
+            print " ".w3."[".p.cpm[3].w3."] ".p."Left   ".panah.p.$lf.n;
             print " ".w3."[".p.cpm[3].w3."] ".p."Apikey ".panah.p.Api_Bal($api_url).n;
             print " ".p.line();
+            tim(10);
         }
     }
 }
