@@ -86,7 +86,7 @@ while(true){
             if(!$cap)continue;
             $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
             $ca= Ambil($r,'<input type="hidden" name="captchaType" value="','">',1);
-            $data="g-recaptcha-response=$cap&captchaType=$$ca&csrf_token_name=$c_t";
+            $data="g-recaptcha-response=$cap&captchaType=$ca&csrf_token_name=$c_t";
             post(web."/firewall/verify",$data);
             print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r;continue;
         }
