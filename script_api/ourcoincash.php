@@ -20,10 +20,10 @@ Function balance(){
 }
 apikey:
 ban();
-Print " ".Pesan(0, "Menu apikey").n;
+Print Pesan(0, "Menu apikey").n;
 Menu(1,"Xevil");
 Menu(2,"Multibot");
-$pilih = readline(" ".Pesan(0,"Input ".p).panah.p);
+$pilih = readline(Pesan(0,"Input ".p).panah.p);
 if($pilih == 1){
     $api_url="http://api.sctg.xyz";
     Print w3." Xevil : ".p.n;
@@ -66,10 +66,10 @@ while(true){
         if(preg_match("/title: 'Good job!'/",$post)){
             $r = balance(); $b=$r["b"];$e=$r["e"];
             $hasil = Ambil($post,"text: '","has been added to your balance",1);
-            print " ".w3."[".p.cpm[1].w3."] ".p."Reward ".panah.p.$hasil.n;
-            print " ".w3."[".p.cpm[2].w3."] ".p."Balance".panah.p.$b.n;
+            print pesan(0,cpm[1]).p."Reward ".panah.p.$hasil.n;
+            print pesan(0,cpm[2]).p."Balance".panah.p.$b.n;
             //print " ".w3."[".p.cpm[3].w3."] ".p."Left   ".panah.p.$lf.n;
-            print " ".w3."[".p.cpm[3].w3."] ".p."Apikey ".panah.p.Api_Bal($api_url).n;
+            print pesan(0,cpm[3]).p.."Apikey ".panah.p.Api_Bal($api_url).n;
             print " ".p.line();
             tim(10);
         }
