@@ -1,6 +1,6 @@
 <?php
 define('host',['Allfaucet','allfaucet.xyz','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -17,7 +17,7 @@ ban();
 Print Pesan(0, "Menu apikey").n;
 Menu(1,"Xevil");
 Menu(2,"Multibot");
-$pilih = readline(" ".Pesan(0,"Input ".p).panah.p);
+$pilih = readline(Pesan(0,"Input ".p).panah.p);
 if($pilih == 1){
     $api_url="http://api.sctg.xyz";
     Print w3." Xevil : ".p.n;
@@ -32,13 +32,12 @@ if(!file_exists(Data."Apikey")){
     goto apikey;
 }
 $apikey=file_get_contents(Data."/Apikey");
-ban();
 SaveCokUa();
 ban();
 $r  = get(web."/dashboard");
 $lg = Ambil($r,'<h2>','</h2>',1);
-if(!$lg){print Pesan(4,1)."  Cookie expried";Del();die;}
-print " ".w3."[".p.cpm[4].w3."]".p." Apikey ".panah.p.Api_Bal($api_url).n;
+if(!$lg){print Pesan(0,cpm[4]).p."ookie expried";Del();die;}
+print pesan(0,cpm[4]).p."Apikey ".panah.p.Api_Bal($api_url).n;
 print " ".line();
 Faucet:
 while(true){
@@ -48,7 +47,17 @@ while(true){
         if($a == 0)continue;
         $coin = explode('"',$coins)[0];
         if(preg_match("/firewall/",$r)){
-            print Pesan(4,1).p."  Firewall! Open browser".n;
+            $s = get(web."/firewall");
+            $sitekey= Ambil($r,'data-sitekey="','">',1);
+            if(!$sitekey){
+                print pesan(0,cpm[4]).p." Sitekey Error ";sleep(5);print r;
+                continue;
+            }
+            $cap=Captcha($r,$api_url,$apikey, $sitekey, web."/firewall",5);
+            if(!$cap)continue;
+            $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
+            $data="g-recaptcha-response=$cap&captchaType=hcaptcha&csrf_token_name=$c_t";
+            post(web."/firewall/verify",$data);
         }
         $r   = get(web."/faucet/currency/$coin");
         if(preg_match('Invalid Anti-Bo/',$r)){continue; }
