@@ -2,7 +2,7 @@
 /* 
  ==================================
  Author   : Zerobot |--
- Version  : 1.0.3 |--
+ Version  : 1.0.4 |--
  Telegram : t.me/official_zerobot |--
  ==================================
 */
@@ -42,7 +42,7 @@ define("cpm",["","√","+","-","!"]);
 define("inpo",["",p." [".mp."ERROR".d.p."] ",p." [".h."INFO ".p."] "]);
 define("inpo1",["",p." [".mp." ERROR ".d.p."] ",p." [".pu." INFO  ".d.p."] "]);
 define("inpo2",[""," ".m."❯".d.p," ".m."❯".d.p," ".m."❯".d.p]);
-define("ApiError", Pesan(1,"Apikey").Pesan(0,"Error | 0 ").n);
+define("ApiError", Pesan(0,"Apikey")."Error | 0 ".n);
 define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
 define("Data","Data/");
@@ -72,26 +72,25 @@ Function getUserAgent(){
 }
 Function load(){
     print rr;
-    $wait =[" Wait."," Wait.."," Wait..."," Wait...."," Wait....."," Wait......"];
+    $wait =[p." Wait ".o."─".p."──────",p." Wait ──".o."─".p."─────",p." Wait ───".o."─".p."───",p." Wait ────".o."─".p."──",p." Wait ─────".o."─".p."─"];
     for($i=1; $i<3; $i++){
         foreach($wait as $waitt){
-            usleep(400000);
+            usleep(300000);
             print $waitt.p.r;
         }
     }
     print rr;
 }
-
 Function bps_cap(){
     print rr;
     $delay =2;
-    print w2." Bypass Captcha √";
+    Efek(w2." Bypass Captcha √",10000);
     sleep($delay);
     print rr;}
 Function bps_anbot(){
     print rr;
     $delay =2; 
-    print w2." Bypass Antibot √";
+    Efek(w2." Bypass Antibot √",10000);
     sleep($delay);
     print rr;
 }
@@ -180,9 +179,10 @@ Function RecaptchaV3($anchor){
     }
 }
 Function Captcha($source,$api_url,$apikey, $sitekey, $pageurl,$delay){
-    if(preg_match("/h-captcha/"   ,$source)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
-    if(preg_match("/g-recaptcha/" ,$source)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
-    if(preg_match("/cf-turnstile/",$source)){$r =  json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+    if(preg_match("/h-captcha/"   ,$source)){$r = json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+    if(preg_match("/g-recaptcha/" ,$source)){$r = json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+    if(preg_match("/cf-turnstile/",$source)){$r = json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+    if(preg_match("/authkong/"    ,$source)){$r = json_decode(file_get_contents($api_url."/in.php?key=".$apikey."&method=authkong&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     $status = $r["status"];
         if($status == 0){ApiError;return 0;}
         $id = $r["request"];
@@ -206,9 +206,16 @@ Function anti_bot($source,$api_url,$apikey,$delay){
 		$antiBot[$no] = $img;
 	}
 	$ua = "Content-type: application/x-www-form-urlencoded";
-	$data = ["key"=>$apikey,"method"=>"antibot","json"=>1] + $antiBot;
-	$opts = ['http' =>['method'  => 'POST','header' => $ua,'content' => http_build_query($data)]];
-	$r = json_decode(file_get_contents($api_url.'/in.php', false, stream_context_create($opts)),1);
+    if(preg_match("/sctg/",$api_url)){
+        $data = ["key"=>$apikey,"method"=>"antibot&main=$main","json"=>1] + $antiBot;
+        $opts = ['http' =>['method'  => 'POST','header' => $ua,'content' => http_build_query($data)]];
+        $r = json_decode(file_get_contents($api_url.'/in.php', false, stream_context_create($opts)),1);   
+    }
+    if((preg_match("/multibot/",$api_url))){
+        $data = ["key"=>$apikey,"method"=>"antibot","json"=>1] + $antiBot;
+        $opts = ['http' =>['method'  => 'POST','header' => $ua,'content' => http_build_query($data)]];
+        $r = json_decode(file_get_contents($api_url.'/in.php', false, stream_context_create($opts)),1);
+    }
 	$id = $r["request"];
 	while(true){
 		load();
@@ -218,11 +225,11 @@ Function anti_bot($source,$api_url,$apikey,$delay){
 		if($status == 1){print rr;print bps_anbot();$r["request"];return "+".str_replace(",","+",$r["request"]);}
 		return 0;
 	}
-}
+}	
 Function Pesan($data=null,$isi){
     $len = 9;$lenstr = $len-strlen($isi);
     if($data == 0 ){
-        return w3."[".p.$isi.w3."]".p;
+        return w3." [".p.$isi.w3."] ".p;
     }elseif($data == 1){
         return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
     }elseif($data == 2){
