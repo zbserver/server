@@ -1,6 +1,6 @@
 <?php
 define('host',['Allfaucet','allfaucet.xyz','']);
-define('version','1.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -59,7 +59,7 @@ while(true){
             $ca= Ambil($r,'<input type="hidden" name="captchaType" value="','">',1);
             $data="g-recaptcha-response=$cap&captchaType=$$ca&csrf_token_name=$c_t";
             post(web."/firewall/verify",$data);
-            print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r; continue;
+            print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r;continue;
         }
         $r   = get(web."/faucet/currency/$coin");
         if(preg_match('Invalid Anti-Bo/',$r)){continue; }
