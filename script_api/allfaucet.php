@@ -1,6 +1,6 @@
 <?php
 define('host',['Allfaucet','allfaucet.xyz','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -47,7 +47,8 @@ while(true){
         if($a == 0)continue;
         $coin = explode('"',$coins)[0];
         if(preg_match("/firewall/",$r)){
-            $s = get(web."/firewall");
+            $r = get(web."/firewall");
+            print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r;
             $sitekey= Ambil($r,'data-sitekey="','">',1);
             if(!$sitekey){
                 print pesan(0,cpm[4]).p." Sitekey Error ";sleep(5);print r;
