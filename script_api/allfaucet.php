@@ -1,6 +1,6 @@
 <?php
 define('host',['Allfaucet','allfaucet.xyz','']);
-define('version','1.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -14,7 +14,7 @@ Function h(){
 }
 apikey:
 ban();
-Print " ".Pesan(0, "Menu apikey").n;
+Print Pesan(0, "Menu apikey").n;
 Menu(1,"Xevil");
 Menu(2,"Multibot");
 $pilih = readline(" ".Pesan(0,"Input ".p).panah.p);
@@ -51,11 +51,11 @@ while(true){
             print Pesan(4,1).p."  Firewall! Open browser".n;
         }
         $r   = get(web."/faucet/currency/$coin");
-        if(preg_match('Invalid Anti-Bo/',$r)){goto Faucet; }
+        if(preg_match('Invalid Anti-Bo/',$r)){continue; }
         if($res){if($res[$coin] > 2)continue;}
         if(preg_match('/Daily claim limit/',$r)){
             $res = Riwayat([$coin=>3],$res);
-            print " ".w3."[".p.cpm[4].w3."] ".p."Daily claim limit | ".k.strtoupper($coin).p."|".n;continue;
+            print pesan(0,cpm[4]).p."Daily claim limit | ".k.strtoupper($coin).p."|".n;continue;
         }
         $atb = anti_bot($r,$api_url,$apikey,8);
         if(!$atb)continue;
@@ -67,19 +67,17 @@ while(true){
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
             $left=Ambil($r,'<p class="lh-1 mb-1 fw-bold">','</p>',5);
-            print " ".w3."[".p.cpm[1].w3."] ".o.$hasil.p."sent to FP".p." | left ".o.$left.p."|".k.strtoupper($coin).p."|".n;
+            print pesan(0,cpm[1]).o.$hasil.p." sent to FP".p." | left ".o.$left.p."|".k.strtoupper($coin).p."|".n;
             tim(10);  
         }
         if(preg_match("/Failed!'/",$post)){
-            print " ".w3."[".p.cpm[4].w3."] ".p."Failed |".k.strtoupper($coin).p."|".n;continue;  
+            print pesan(0,cpm[4]).p."Failed |".k.strtoupper($coin).p."|".n;continue;  
         }
         if(preg_match("/Sufficient fund/",$post)){
             $res = Riwayat([$coin=>3],$res);
-            print " ".w3."[".p.cpm[4].w3."] ".p."Sufficient fund".n;continue;
+            print pesan(0,cpm[4]).p."Sufficient fund".n;continue;
             $res = Riwayat([$coin=>1],$res);
         }
         en:
-        if(!$c){print " ".w3."[".p.cpm[4].w3."] ".p."All coins have been claimed".n;die;}
-        if(Riwayat($c) > 2)break;
     }
 }
