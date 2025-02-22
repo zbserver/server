@@ -1,6 +1,6 @@
 <?php
 define('host',['Allfaucet','allfaucet.xyz','']);
-define('version','1.0.2');
+define('version','1.0.2xxxxxx');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -46,22 +46,6 @@ while(true){
     foreach($c as $a => $coins){
         if($a == 0)continue;
         $coin = explode('"',$coins)[0];
-        if(preg_match("/firewall/",$r)){
-            $r = get(web."/firewall");
-            print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r;
-            $sitekey= Ambil($r,'data-sitekey="','">',1);
-            if(!$sitekey){
-                print pesan(0,cpm[4]).p." Sitekey Error ";sleep(5);print r;
-                continue;
-            }
-            $cap=Captcha($r,$api_url,$apikey, $sitekey, web."/firewall",5);
-            if(!$cap)continue;
-            $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
-            $ca= Ambil($r,'<input type="hidden" name="captchaType" value="','">',1);
-            $data="g-recaptcha-response=$cap&captchaType=$$ca&csrf_token_name=$c_t";
-            post(web."/firewall/verify",$data);
-            print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r;continue;
-        }
         $r   = get(web."/faucet/currency/$coin");
         if(preg_match('Invalid Anti-Bo/',$r)){continue; }
         if($res){if($res[$coin] > 2)continue;}
@@ -89,6 +73,22 @@ while(true){
             $res = Riwayat([$coin=>3],$res);
             print pesan(0,cpm[4]).p."Sufficient fund".n;continue;
             $res = Riwayat([$coin=>1],$res);
+        }
+        if(preg_match("/firewall/",$r)){
+            $r = get(web."/firewall");
+            print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r;
+            $sitekey= Ambil($r,'data-sitekey="','">',1);
+            if(!$sitekey){
+                print pesan(0,cpm[4]).p." Sitekey Error ";sleep(5);print r;
+                continue;
+            }
+            $cap=Captcha($r,$api_url,$apikey, $sitekey, web."/firewall",5);
+            if(!$cap)continue;
+            $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
+            $ca= Ambil($r,'<input type="hidden" name="captchaType" value="','">',1);
+            $data="g-recaptcha-response=$cap&captchaType=$$ca&csrf_token_name=$c_t";
+            post(web."/firewall/verify",$data);
+            print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r;continue;
         }
         en:
     }
