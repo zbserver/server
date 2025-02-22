@@ -69,7 +69,7 @@ while(true){
             print pesan(0,cpm[1]).p."Reward ".panah.p.$hasil.n;
             print pesan(0,cpm[2]).p."Balance".panah.p.$b.n;
             //print " ".w3."[".p.cpm[3].w3."] ".p."Left   ".panah.p.$lf.n;
-            print pesan(0,cpm[3]).p.."Apikey ".panah.p.Api_Bal($api_url).n;
+            print pesan(0,cpm[3]).p."Apikey ".panah.p.Api_Bal($api_url).n;
             print " ".p.line();
             tim(10);
         }
