@@ -45,12 +45,12 @@ ban();
 $r = get(web."/dashboard");
 
 $lg = Ambil($r,'<span>','</span>',2);
-if(!$lg){print " ".w3."[".p.cpm[4].w3."] ".p."Cookie Experied.".n;Del();die;}
+if(!$lg){print pesan(0,cpm[4]).p."Cookie Experied.".n;Del();die;}
 else{print " ".p."Login success.";sleep(2);print r;}
 $r = balance(); $b=$r["b"];$e=$r["e"];
-print " ".w3."[".p.cpm[2].w3."] ".p."Balance".panah.p.$b.n;
-print " ".w3."[".p.cpm[2].w3."] ".p."Energy ".panah.p.$e.n;
-print " ".w3."[".p.cpm[2].w3."] ".p."Apikey ".panah.p.Api_Bal($api_url).n;
+print pesan(0,cpm[2]).p."Balance".panah.p.$b.n;
+print pesan(0,cpm[2]).p."Energy ".panah.p.$e.n;
+print pesan(0,cpm[2]).p."Apikey ".panah.p.Api_Bal($api_url).n;
 print " ".line();
 
 Faucet:
