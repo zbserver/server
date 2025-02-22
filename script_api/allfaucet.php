@@ -1,10 +1,10 @@
 <?php
 define('host',['Allfaucet','allfaucet.xyz','']);
-define('version','1.0.2xxxxxx');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-init();
+include("app.php");
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "cookie: ".file_get_contents(Data.cok);
@@ -74,7 +74,7 @@ while(true){
             print pesan(0,cpm[4]).p."Sufficient fund".n;continue;
             $res = Riwayat([$coin=>1],$res);
         }
-        if(preg_match("/firewall/",$r)){
+        if(preg_match("/firewall/",$post)){
             $r = get(web."/firewall");
             print pesan(0,cpm[4]).p."Bypass Firewall!";sleep(2);print r;
             $sitekey= Ambil($r,'data-sitekey="','">',1);
