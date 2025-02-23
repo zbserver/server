@@ -2,7 +2,7 @@
 /* 
  ==================================
  Author   : Zerobot |--
- Version  : 1.0.4 |--
+ Version  : 1.0.5 |--
  Telegram : t.me/official_zerobot |--
  ==================================
 */
@@ -195,8 +195,17 @@ Function Captcha($source,$api_url,$apikey, $sitekey, $pageurl,$delay){
             return 0;
         }
 }
+
 Function anti_bot($source,$api_url,$apikey,$delay){
-	$main = explode('"',explode('<img src="',explode('Bot links',$source)[1])[1])[0];
+    if(preg_match("/sctg/",$api_url)){
+        return antibotXev($source,$api_url,$apikey,$delay);
+    }
+    if((preg_match("/multibot/",$api_url))){
+       return antibotMul($source,$api_url,$apikey,$delay);
+    }	
+}
+Function antibotMul($source,$api_url,$apikey,$delay){
+    $main = explode('"',explode('<img src="',explode('Bot links',$source)[1])[1])[0];
 	$antiBot["main"] = $main;
 	$src = explode('rel=\"',$source);
 	foreach($src as $x => $sour){
@@ -206,26 +215,47 @@ Function anti_bot($source,$api_url,$apikey,$delay){
 		$antiBot[$no] = $img;
 	}
 	$ua = "Content-type: application/x-www-form-urlencoded";
-    if(preg_match("/sctg/",$api_url)){
-        $data = ["key"=>$apikey,"method"=>"antibot&main=$main","json"=>1] + $antiBot;
-        $opts = ['http' =>['method'  => 'POST','header' => $ua,'content' => http_build_query($data)]];
-        $r = json_decode(file_get_contents($api_url.'/in.php', false, stream_context_create($opts)),1);   
-    }
-    if((preg_match("/multibot/",$api_url))){
         $data = ["key"=>$apikey,"method"=>"antibot","json"=>1] + $antiBot;
         $opts = ['http' =>['method'  => 'POST','header' => $ua,'content' => http_build_query($data)]];
         $r = json_decode(file_get_contents($api_url.'/in.php', false, stream_context_create($opts)),1);
-    }
-	$id = $r["request"];
-	while(true){
-		load();
-		$r = json_decode(file_get_contents($api_url."/res.php?key=".$apikey."&action=get&id=".$id."&json=1"),1);
-		$status = $r["status"];
-		if($r["request"] == "CAPCHA_NOT_READY"){print rr;load();sleep($delay);print rr;continue;}
-		if($status == 1){print rr;print bps_anbot();$r["request"];return "+".str_replace(",","+",$r["request"]);}
-		return 0;
-	}
-}	
+        $id = $r["request"];
+        while(true){
+            load();
+            $r = json_decode(file_get_contents($api_url."/res.php?key=".$apikey."&action=get&id=".$id."&json=1"),1);
+            $status = $r["status"];
+            if($r["request"] == "CAPCHA_NOT_READY"){print rr;load();sleep($delay);print rr;continue;}
+            if($status == 1){print rr;print bps_anbot();$r["request"];return "+".str_replace(",","+",$r["request"]);}
+            return 0;
+        }
+}
+Function antibotXev($source,$api_url,$apikey,$delay){
+    a:
+    $bot1=explode('\"',explode('rel=\"',$source)[1])[0];
+    $bot2=explode('\"',explode('rel=\"',$source)[2])[0];
+    $bot3=explode('\"',explode('rel=\"',$source)[3])[0];
+    $main = explode('"',explode('data:image/png;base64,', $source)[1])[0];
+    $img1 = explode('"',explode('data:image/png;base64,', $source)[2])[0];
+    $img2 = explode('"',explode('data:image/png;base64,', $source)[3])[0];
+    $img3 = explode('"',explode('data:image/png;base64,', $source)[4])[0];
+    if(!$bot1){ goto a;}
+    $ua = "Content-type: application/x-www-form-urlencoded\r\n";
+    $data = array('key' => $apikey,'method' => 'antibot','main' => $main,$bot1 => $img1,$bot2 => $img2,$bot3 => $img3);
+    $opts = array('http' => array('header'  => $ua,'method' => 'POST','content' => http_build_query($data)));
+    $context  = stream_context_create($opts);
+    $response = file_get_contents($api_url."/in.php", false, $context);
+    $task = explode('OK|', $response)[1];
+    if($task){
+        while(true){$r2 = file_get_contents($api_url."/res.php?key=".$apikey."&id=".$task);
+            $hasil = explode('OK|', $r2)[1];
+            $antb = explode(',', $hasil);
+            if($hasil){
+                print rr;print bps_anbot();
+                return "+".implode("+", $antb);
+                break;
+            }else if($r2 == "CAPCHA_NOT_READY"){print rr;load();sleep($delay);print rr;continue;}else{return 0;}
+        }
+    }else{goto a;}
+}
 Function Pesan($data=null,$isi){
     $len = 9;$lenstr = $len-strlen($isi);
     if($data == 0 ){
