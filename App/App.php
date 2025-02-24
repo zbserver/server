@@ -2,7 +2,7 @@
 /* 
  ==================================
  Author   : Zerobot |--
- Version  : 1.0.5 |--
+ Version  : 1.0.6 |--
  Telegram : t.me/official_zerobot |--
  ==================================
 */
@@ -72,7 +72,15 @@ Function getUserAgent(){
 }
 Function load(){
     print rr;
-    $wait =[p." Wait ".o."─".p."──────",p." Wait ──".o."─".p."─────",p." Wait ───".o."─".p."───",p." Wait ────".o."─".p."──",p." Wait ─────".o."─".p."─"];
+    $wait =[
+        p." Wait ".o."─".p."───────",
+        p." Wait ──".o."─".p."─────",
+        p." Wait ───".o."─".p."────",
+        p." Wait ────".o."─".p."───",
+        p." Wait ─────".o."─".p."──",
+        p." Wait ──────".o."─".p."─",
+        p." Wait ───────".o."─".p
+    ];
     for($i=1; $i<3; $i++){
         foreach($wait as $waitt){
             usleep(300000);
@@ -195,14 +203,9 @@ Function Captcha($source,$api_url,$apikey, $sitekey, $pageurl,$delay){
             return 0;
         }
 }
-
 Function anti_bot($source,$api_url,$apikey,$delay){
-    if(preg_match("/sctg/",$api_url)){
-        return antibotXev($source,$api_url,$apikey,$delay);
-    }
-    if((preg_match("/multibot/",$api_url))){
-       return antibotMul($source,$api_url,$apikey,$delay);
-    }	
+    if(preg_match("/sctg/"    ,$api_url)){return antibotXev($source,$api_url,$apikey,$delay);}
+    if(preg_match("/multibot/",$api_url)){return antibotMul($source,$api_url,$apikey,$delay);}	
 }
 Function antibotMul($source,$api_url,$apikey,$delay){
     $main = explode('"',explode('<img src="',explode('Bot links',$source)[1])[1])[0];
@@ -238,7 +241,7 @@ Function antibotXev($source,$api_url,$apikey,$delay){
     $img2 = explode('"',explode('data:image/png;base64,', $source)[3])[0];
     $img3 = explode('"',explode('data:image/png;base64,', $source)[4])[0];
     if(!$bot1){ goto a;}
-    $ua = "Content-type: application/x-www-form-urlencoded\r\n";
+    $ua = "Content-type: application/x-www-form-urlencoded";
     $data = array('key' => $apikey,'method' => 'antibot','main' => $main,$bot1 => $img1,$bot2 => $img2,$bot3 => $img3);
     $opts = array('http' => array('header'  => $ua,'method' => 'POST','content' => http_build_query($data)));
     $context  = stream_context_create($opts);
