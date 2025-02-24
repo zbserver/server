@@ -1,6 +1,6 @@
 <?php
 define('host',['Ourcoincash','ourcoincash.xyz','']);
-define('version','1.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -41,9 +41,7 @@ Awal:
 $apikey=file_get_contents(Data."/Apikey");
 SaveCokUa();
 ban();
-
 $r = get(web."/dashboard");
-
 $lg = Ambil($r,'<span>','</span>',2);
 if(!$lg){print pesan(0,cpm[4]).p."Cookie Experied.".n;Del();die;}
 else{print " ".p."Login success.";sleep(2);print r;}
@@ -56,6 +54,19 @@ print " ".line();
 Faucet:
 while(true){
     $r = get(web."/faucet");
+    if(preg_match("/firewall/",$r)){
+        $s = get(web."/firewall");
+        $sitekey= Ambil($r,'data-sitekey="','">',1);
+        if(!$sitekey){
+            print pesan(0,cpm[4]).p." Sitekey Error ";sleep(5);print r;
+            continue;
+        }
+        $cap=Captcha($r,$api_url,$apikey, $sitekey, web."/firewall",5);
+        if(!$cap)continue;
+        $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
+        $data="g-recaptcha-response=$cap&captchaType=hcaptcha&csrf_token_name=$c_t";
+        post(web."/firewall/verify",$data);
+    }
     $atb = anti_bot($r,$api_url,$apikey,8);
     if(!$atb)continue;
     $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
@@ -68,7 +79,6 @@ while(true){
             $hasil = Ambil($post,"text: '","has been added to your balance",1);
             print pesan(0,cpm[1]).p."Reward ".panah.p.$hasil.n;
             print pesan(0,cpm[2]).p."Balance".panah.p.$b.n;
-            //print " ".w3."[".p.cpm[3].w3."] ".p."Left   ".panah.p.$lf.n;
             print pesan(0,cpm[3]).p."Apikey ".panah.p.Api_Bal($api_url).n;
             print " ".p.line();
             tim(10);
