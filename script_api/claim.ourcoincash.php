@@ -1,6 +1,6 @@
 <?php
 define('host',['claim.ourcoincash','claim.ourcoincash.xyz','']);
-define('version','1.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -64,7 +64,7 @@ while(true){
             $ca  = Ambil($r,'name="captchaType" value="','">',1);
             $data="g-recaptcha-response=$cap&captchaType=$ca&csrf_token_name=$c_t";
             post(web."/firewall/verify",$data);
-            print pesan(0,cpm[4]).p."Bypass Firewall! √";sleep(2);print r;continue;
+            print pesan(0,cpm[4]).p."Bypass Firewall! √";sleep(2);print r;goto faucet;
         }
         $r = get(web."/faucet/currency/$coin");
         if($res){if($res[$coin] > 2)continue;}
@@ -84,7 +84,6 @@ while(true){
         $ca  = Ambil($r,'name="captcha"><option value="','">',1);
         $email= Ambil($r,'name="wallet" class="form-control" value="','"',1);
         $data ="csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap&wallet=".urlencode($email);
-        
         $post = post(web."/faucet/verify/$coin",$data);
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
@@ -103,3 +102,4 @@ while(true){
         //if(Riwayat($res) > 2)break;
     }
 }
+    
