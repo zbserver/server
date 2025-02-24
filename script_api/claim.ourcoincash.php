@@ -1,6 +1,6 @@
 <?php
 define('host',['claim.ourcoincash','claim.ourcoincash.xyz','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -88,7 +88,7 @@ while(true){
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
             $lf = Ambil($r,'<p class="lh-1 mb-1 font-weight-bold">','</p>',3);
-            print pesan(0,cpm[1]).o.$hasil.p."sent to FP.| ".p."left ".w2.$lf.p."|".w2.strtoupper($coin).p."|".n;   
+            print pesan(0,cpm[1]).o.$hasil.p."sent to FP.| ".w2.$lf.p."|".w2.strtoupper($coin).p."|".n;   
         }
         if(preg_match("/Failed!'/",$post)){
             $hasil= Ambil($post,"html: '",'',1);
