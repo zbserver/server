@@ -110,22 +110,21 @@ Function Del(){
     unlink(Data.$co[0]);
     unlink(Data.$co[1]);
 }
-Function EngCek(){
+Function CekVer(){
     $server = $_SERVER["TMP"];
     if(!$server){
-	    $server = $_SERVER["TMPDIR"];
+        $server = $_SERVER["TMPDIR"];}
+    update:
+    if(!file_exists($server."\zerobot\App.php")){
+        system("mkdir ".$server."\zerobot");
+        Download($server);
     }
-
-update:
-if(!file_exists($server."/zerobot/app.php")){
-	system("mkdir ".$server."/zerobot");
-	DownloadSc($server);
+    if(app_version > app_required){
+         Download($server);
+    }else{print p." Latest Version :".app_local;sleep(2);print r;}
 }
 
-if(app_version > app_required){
-        DownloadSc($server);
-}else{print p." Latest Version :".app_local;sleep(2);print r;}
-}
+
 Function Menu_Api(){
     apikey:
     ban();
