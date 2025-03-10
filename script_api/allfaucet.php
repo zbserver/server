@@ -1,4 +1,7 @@
 <?php
+cl();
+print p."Update Download -> https://t.me/official_zerobot".n;
+die;
 define('host',['Allfaucet','allfaucet.xyz','']);
 define('version','1.0.2');
 define('cok','cookie.'.host[0]);
