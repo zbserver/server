@@ -1,4 +1,6 @@
 <?php
+print p."Update Download -> https://t.me/official_zerobot".n;
+tim(10);die;
 define('host',['Nevcoins','nevcoins.club','']);
 define('version','1.0');
 define('cok','cookie.'.host[0]);
