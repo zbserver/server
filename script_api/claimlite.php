@@ -1,7 +1,7 @@
 <?php
-
+cl();
 print p."Update Download -> https://t.me/official_zerobot".n;
-tim(10);die;
+die;
 
 define('host',['ClaimLite','claimlite.club','']);
 define('version','1.1');
